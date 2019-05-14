@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.AbstractPage;
 
+
 public class AccountsGoogleCom extends AbstractPage {
 
     private WebDriver driver;
@@ -15,7 +16,7 @@ public class AccountsGoogleCom extends AbstractPage {
     @FindBy(xpath = "//input[contains (@class, 'whsOnd zHQkBf') and @type='email']")
     private WebElement setEmailField;
 
-    @FindBy(xpath = "//span[contains(text(), 'Next')]")
+    @FindBy(xpath = "//div[@class='qhFLie']//span[@class='RveJvd snByac']")
     private WebElement nextButton;
 
 
@@ -28,36 +29,40 @@ public class AccountsGoogleCom extends AbstractPage {
 
     @FindBy(xpath = "//a[@href ='https://mail.google.com/mail/?tab=km']")
     private WebElement gmailLinkButton;
-    
 
 
     public AccountsGoogleCom(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
 
-   }
+    }
 
-   public void typeEmail(String email){
+    public void typeEmail(String email) {
         setEmailField.clear();
         setEmailField.sendKeys(email);
-   }
+    }
 
-   public void typePassword(String passw){
+    public void typePassword(String passw) {
         setPasswordField.clear();
         setPasswordField.sendKeys(passw);
 
-   }
+    }
 
-   public void clickNextButton(){
+    public void clickNextButton() {
         nextButton.click();
-   }
+    }
 
-   public void expandGoogleMenu(){
+    public WebElement getNextButton(){
+        return nextButton;
+    }
+
+    public void expandGoogleMenu() {
         googleMenuButton.click();
-   }
+    }
 
-   public GmailCom clickOnGmailLink(){
-        return GmailCom = gmailLinkButton.click();
-   }
+    public GmailCom clickOnGmailLink() {
+        gmailLinkButton.click();
+        return new GmailCom(driver);
+    }
 
 }
