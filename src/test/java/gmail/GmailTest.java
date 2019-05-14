@@ -4,6 +4,7 @@ import common.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +15,7 @@ import pages.gmail.GmailCom;
 import utills.EnvironmentPropertiesReader;
 
 import java.io.IOException;
+import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,12 +50,12 @@ public class GmailTest extends BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getSendEmailButton()));
         gmailCom.sendEmail();
 
-        wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getInboxButton()));
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("return((window.jQuery != null) && (jQuery.active === 0))").equals("true");
         gmailCom.clickOnInboxButton();
 
-        List<WebElement> listEmailsSubjects = gmailCom.getList();
-
-
-        Assert.assertEquals("Messages Subjects mismatch", environmentPropertiesReader.getEnvironmentValue("email.subject"), listEmailsSubjects.get(0).getText());
+        List<WebElement> listUnReadEmailsSubjects = gmailCom.getListEmailsUnRead();
+        Assert.assertEquals("Messages Subjects mismatch", environmentPropertiesReader.getEnvironmentValue("email.subject"), listUnReadEmailsSubjects.get(0).getText());
     }
 }
