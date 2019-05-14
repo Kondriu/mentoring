@@ -15,7 +15,6 @@ public class GmailCom extends AbstractPage {
     private WebDriver driver;
 
     @FindBy(xpath = "//div[contains(text(), 'Написати')]")
-    //div[@class='z0']/div
     private WebElement newEmailButton;
 
     @FindBy(xpath = "//textarea[@name='to']")
@@ -47,18 +46,16 @@ public class GmailCom extends AbstractPage {
     private List<WebElement> listEmailsUnRead;
 
 
-    @FindBy(xpath = "//div[contains(@class, 'aio UKr6le')]//a[@tabindex = 0]")//a[@href='https://mail.google.com/mail/#inbox']
+    @FindBy(xpath = "//div[contains(@class, 'aio UKr6le')]//a[@tabindex = 0]")
+//a[@href='https://mail.google.com/mail/#inbox']
     private WebElement inboxButton;
 
     public GmailCom(final WebDriver driver) {
         this.driver = driver;
-        //  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
-
     public void clickCreateNewEmail() {
-
         newEmailButton.click();
     }
 
@@ -74,9 +71,10 @@ public class GmailCom extends AbstractPage {
         emailBodyField.sendKeys(body);
     }
 
-    public WebElement getSendEmailButton(){
+    public WebElement getSendEmailButton() {
         return sendEmailButton;
     }
+
     public void sendEmail() {
         sendEmailButton.click();
     }
@@ -93,6 +91,7 @@ public class GmailCom extends AbstractPage {
     public List<WebElement> getListEmailsRead() {
         return listEmailsRead;
     }
+
     public List<WebElement> getListEmailsUnRead() {
         return listEmailsUnRead;
     }

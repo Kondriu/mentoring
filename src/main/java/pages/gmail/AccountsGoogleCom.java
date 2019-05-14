@@ -34,7 +34,6 @@ public class AccountsGoogleCom extends AbstractPage {
     public AccountsGoogleCom(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
     }
 
     public void typeEmail(String email) {
@@ -45,14 +44,13 @@ public class AccountsGoogleCom extends AbstractPage {
     public void typePassword(String passw) {
         setPasswordField.clear();
         setPasswordField.sendKeys(passw);
-
     }
 
     public void clickNextButton() {
         nextButton.click();
     }
 
-    public WebElement getNextButton(){
+    public WebElement getNextButton() {
         return nextButton;
     }
 
