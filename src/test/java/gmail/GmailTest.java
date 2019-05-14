@@ -21,29 +21,35 @@ public class GmailTest extends BaseTest {
     public void getGmailPage() throws IOException {
 
         EnvironmentPropertiesReader environmentPropertiesReader = new EnvironmentPropertiesReader();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
 
         getDriver().get("https://accounts.google.com");
+
         AccountsGoogleCom login = new AccountsGoogleCom(getDriver());
         login.typeEmail(environmentPropertiesReader.getEnvironmentValue("user.login"));
-        login.clickNextButton();
-        login.typePassword(environmentPropertiesReader.getEnvironmentValue("user.passw"));
-        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+
         wait.until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
         login.clickNextButton();
+
+        login.typePassword(environmentPropertiesReader.getEnvironmentValue("user.passw"));
+
+        wait.until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
+        login.clickNextButton();
+
         login.expandGoogleMenu();
         GmailCom gmailCom = login.clickOnGmailLink();
 
         List<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
         getDriver().switchTo().window(tabs.get(1));
 
-        gmailCom.mouseMoveToCreateNewEmailButton();
 
+        gmailCom.mouseMoveToCreateNewEmailButton();
         wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getNewEmailButton()));
         gmailCom.clickCreateNewEmail();
-        gmailCom.typeReceiversEmail(environmentPropertiesReader.getEnvironmentValue("email.to"));
-        gmailCom.typeSubject(environmentPropertiesReader.getEnvironmentValue("email.subject"));
 
         wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getSendEmailButton()));
+        gmailCom.typeReceiversEmail(environmentPropertiesReader.getEnvironmentValue("email.to"));
+        gmailCom.typeSubject(environmentPropertiesReader.getEnvironmentValue("email.subject"));
         gmailCom.sendEmail();
 
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -52,5 +58,6 @@ public class GmailTest extends BaseTest {
 
         List<WebElement> listUnReadEmailsSubjects = gmailCom.getListEmailsUnRead();
         Assert.assertEquals("Messages Subjects mismatch", environmentPropertiesReader.getEnvironmentValue("email.subject"), listUnReadEmailsSubjects.get(0).getText());
+
     }
 }
