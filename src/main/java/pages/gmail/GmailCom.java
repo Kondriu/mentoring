@@ -14,7 +14,7 @@ public class GmailCom extends AbstractPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[contains(text(), 'Написати')]")
+    @FindBy(xpath = "//div[@class='z0']/div")
     private WebElement newEmailButton;
 
     @FindBy(xpath = "//textarea[@name='to']")
@@ -45,9 +45,7 @@ public class GmailCom extends AbstractPage {
     })
     private List<WebElement> listEmailsUnRead;
 
-
     @FindBy(xpath = "//div[contains(@class, 'aio UKr6le')]//a[@tabindex = 0]")
-//a[@href='https://mail.google.com/mail/#inbox']
     private WebElement inboxButton;
 
     public GmailCom(final WebDriver driver) {
