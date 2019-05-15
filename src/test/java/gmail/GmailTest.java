@@ -33,6 +33,7 @@ public class GmailTest extends BaseTest {
 
         login.typePassword(environmentPropertiesReader.getEnvironmentValue("user.passw"));
 
+        wait.until(ExpectedConditions.visibilityOf(login.getNextButton()));
         wait.until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
         login.clickNextButton();
 
@@ -57,6 +58,12 @@ public class GmailTest extends BaseTest {
         gmailCom.clickOnInboxButton();
 
         List<WebElement> listUnReadEmailsSubjects = gmailCom.getListEmailsUnRead();
+
+        listUnReadEmailsSubjects.
+                stream().
+                map(x -> x.getText()).
+                forEach(System.out::println);
+
         Assert.assertEquals("Messages Subjects mismatch", environmentPropertiesReader.getEnvironmentValue("email.subject"), listUnReadEmailsSubjects.get(0).getText());
 
     }
