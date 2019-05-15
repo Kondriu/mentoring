@@ -55,6 +55,8 @@ public class GmailTest extends BaseTest {
 
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("return((window.jQuery != null) && (jQuery.active === 0))").equals("true");
+        wait.until(ExpectedConditions.visibilityOf(gmailCom.getInboxButton()));
+        wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getInboxButton()));
         gmailCom.clickOnInboxButton();
 
         List<WebElement> listUnReadEmailsSubjects = gmailCom.getListEmailsUnRead();
