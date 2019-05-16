@@ -6,11 +6,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
-import pages.AbstractPage;
+import pages.BasePage;
 
 import java.util.List;
 
-public class GmailCom extends AbstractPage {
+public class GmailCom extends BasePage {
 
     private WebDriver driver;
 

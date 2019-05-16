@@ -5,16 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class AbstractPage {
+public class BasePage {
 
     private WebDriver driver;
 
-    public AbstractPage (final WebDriver driver) {
+    public BasePage(final WebDriver driver) {
         this.driver=driver;
 
     }
 
-    public AbstractPage() {
+    public BasePage() {
     }
 
     public WebDriver getDriver(){

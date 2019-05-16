@@ -18,23 +18,20 @@ import java.util.List;
 public class GmailTest extends BaseTest {
 
     @Test
-    public void getGmailPage() throws IOException {
-
-        EnvironmentPropertiesReader environmentPropertiesReader = new EnvironmentPropertiesReader();
-        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+    public void gmailLoginAndCreateEmailAndSendEmailTest(){
 
         getDriver().get("https://accounts.google.com");
 
         AccountsGoogleCom login = new AccountsGoogleCom(getDriver());
-        login.typeEmail(environmentPropertiesReader.getEnvironmentValue("user.login"));
+        login.typeEmail(getPropertiesReader().getEnvironmentValue("user.login"));
 
-        wait.until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
+        getWait().until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
         login.clickNextButton();
 
-        login.typePassword(environmentPropertiesReader.getEnvironmentValue("user.passw"));
+        login.typePassword(getPropertiesReader().getEnvironmentValue("user.passw"));
 
-        wait.until(ExpectedConditions.visibilityOf(login.getNextButton()));
-        wait.until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
+        getWait().until(ExpectedConditions.visibilityOf(login.getNextButton()));
+        getWait().until(ExpectedConditions.elementToBeClickable(login.getNextButton()));
         login.clickNextButton();
 
         login.expandGoogleMenu();
@@ -45,28 +42,22 @@ public class GmailTest extends BaseTest {
 
 
         gmailCom.mouseMoveToCreateNewEmailButton();
-        wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getNewEmailButton()));
+        getWait().until(ExpectedConditions.elementToBeClickable(gmailCom.getNewEmailButton()));
         gmailCom.clickCreateNewEmail();
 
-        wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getSendEmailButton()));
-        gmailCom.typeReceiversEmail(environmentPropertiesReader.getEnvironmentValue("email.to"));
-        gmailCom.typeSubject(environmentPropertiesReader.getEnvironmentValue("email.subject"));
+        getWait().until(ExpectedConditions.elementToBeClickable(gmailCom.getSendEmailButton()));
+        gmailCom.typeReceiversEmail(getPropertiesReader().getEnvironmentValue("email.to"));
+        gmailCom.typeSubject(getPropertiesReader().getEnvironmentValue("email.subject"));
         gmailCom.sendEmail();
 
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("return((window.jQuery != null) && (jQuery.active === 0))").equals("true");
-        wait.until(ExpectedConditions.visibilityOf(gmailCom.getInboxButton()));
-        wait.until(ExpectedConditions.elementToBeClickable(gmailCom.getInboxButton()));
+        getWait().until(ExpectedConditions.visibilityOf(gmailCom.getInboxButton()));
+        getWait().until(ExpectedConditions.elementToBeClickable(gmailCom.getInboxButton()));
         gmailCom.clickOnInboxButton();
 
         List<WebElement> listUnReadEmailsSubjects = gmailCom.getListEmailsUnRead();
-
-        listUnReadEmailsSubjects.
-                stream().
-                map(x -> x.getText()).
-                forEach(System.out::println);
-
-        Assert.assertEquals("Messages Subjects mismatch", environmentPropertiesReader.getEnvironmentValue("email.subject"), listUnReadEmailsSubjects.get(0).getText());
+        Assert.assertEquals("Messages Subjects mismatch", getPropertiesReader().getEnvironmentValue("email.subject"), listUnReadEmailsSubjects.get(0).getText());
 
     }
 }
