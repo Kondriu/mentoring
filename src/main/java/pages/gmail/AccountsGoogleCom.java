@@ -1,32 +1,31 @@
 package pages.gmail;
 
-import net.thucydides.core.annotations.DefaultUrl;
+import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 
-
+@Data
 public class AccountsGoogleCom extends BasePage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "//input[contains (@class, 'whsOnd zHQkBf') and @type='email']")
+    @FindBy(css = "input[type=email]")
     private WebElement setEmailField;
 
-    @FindBy(xpath = "//div[@class='qhFLie']//span[@class='RveJvd snByac']")
+    //@FindBy(xpath = "//div[@class='qhFLie']//span[@class='RveJvd snByac']")
+    @FindBy(css = "span[class='RveJvd snByac']")
     private WebElement nextButton;
 
-
-    @FindBy(xpath = "//input[contains (@class, 'whsOnd zHQkBf') and @type='password']")
+    @FindBy(css = "input[type='password']")
     private WebElement setPasswordField;
 
-    @FindBy(xpath = "//a[@class='gb_x']")
+    @FindBy(css = "a[class=gb_x]")
     private WebElement googleMenuButton;
 
-
-    @FindBy(xpath = "//a[@href ='https://mail.google.com/mail/?tab=km']")
+    @FindBy(css = "a[href='https://mail.google.com/mail/?tab=km']")
     private WebElement gmailLinkButton;
 
 

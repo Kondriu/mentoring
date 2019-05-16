@@ -3,6 +3,7 @@ package common;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,14 +17,23 @@ public class BaseTest {
     private WebDriver driver;
     private WebDriverWait wait;
     private EnvironmentPropertiesReader environmentPropertiesReader;
+    private JavascriptExecutor javascriptExecutor;
 
     public WebDriver getDriver() {
         return driver;
     }
 
-    public WebDriverWait getWait() {return wait;}
+    public WebDriverWait getWait() {
+        return wait;
+    }
 
-    public EnvironmentPropertiesReader getPropertiesReader(){return environmentPropertiesReader;}
+    public EnvironmentPropertiesReader getPropertiesReader() {
+        return environmentPropertiesReader;
+    }
+
+    public JavascriptExecutor getJavascriptExecutor() {
+        return javascriptExecutor;
+    }
 
     @Before
     public void initDriver() throws IOException {
@@ -35,6 +45,9 @@ public class BaseTest {
 
         environmentPropertiesReader = new EnvironmentPropertiesReader();
         wait = new WebDriverWait(getDriver(), 20);
+
+        javascriptExecutor = (JavascriptExecutor) driver;
+
     }
 
     @After

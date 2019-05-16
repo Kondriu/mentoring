@@ -1,5 +1,6 @@
 package pages.gmail;
 
+import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,42 +11,33 @@ import pages.BasePage;
 
 import java.util.List;
 
+@Data
 public class GmailCom extends BasePage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[@class='z0']/div")
+    @FindBy(css = "div[class=z0]>div")
     private WebElement newEmailButton;
 
-    @FindBy(xpath = "//textarea[@name='to']")
+    @FindBy(css = "textarea[name=to]")
     private WebElement emailToField;
 
-    @FindBy(xpath = "//input[@name='subjectbox']")
+    @FindBy(css = "input[name=subjectbox]")
     private WebElement emailSubjField;
 
-    @FindBy(xpath = "//div[@id=':a1']")
+    //@FindBy(xpath = "//div[@id=':a1']")
+    @FindBy(css = "div[class^=Am]")
     private WebElement emailBodyField;
 
-    @FindBy(xpath = "//div[@class='T-I J-J5-Ji aoO v7 T-I-atl L3']")
+    @FindBy(css = "div[class^='T-I J-J5-Ji aoO v7 T-I-atl L3']")
     private WebElement sendEmailButton;
 
-    @FindBy(xpath = "//span[@class='gb_ya gbii']")
-    private WebElement googleAccountButton;
-
-    @FindBy(xpath = "//a[@class='gb_0 gb_Af gb_If gb_ke gb_kb']")
-    private WebElement exitButton;
-
     @FindBys({
-            @FindBy(xpath = "//tr[@class='zA yO']//span[@class='bog']")
-    })
-    private List<WebElement> listEmailsRead;
-
-    @FindBys({
-            @FindBy(xpath = "//tr[@class='zA zE']//span[@class='bog']")
+            @FindBy(css = "span[class=bog]>span[class=bqe]")
     })
     private List<WebElement> listEmailsUnRead;
 
-    @FindBy(xpath = "//div[contains(@class, 'aio UKr6le')]//a[@tabindex = 0]")
+    @FindBy(css = "a[href$='/#inbox']")
     private WebElement inboxButton;
 
     public GmailCom(final WebDriver driver) {
@@ -84,10 +76,6 @@ public class GmailCom extends BasePage {
     public void mouseMoveToCreateNewEmailButton() {
         Actions action = new Actions(driver);
         action.moveToElement(newEmailButton).perform();
-    }
-
-    public List<WebElement> getListEmailsRead() {
-        return listEmailsRead;
     }
 
     public List<WebElement> getListEmailsUnRead() {
