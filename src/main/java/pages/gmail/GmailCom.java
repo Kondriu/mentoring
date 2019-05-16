@@ -25,7 +25,6 @@ public class GmailCom extends BasePage {
     @FindBy(css = "input[name=subjectbox]")
     private WebElement emailSubjField;
 
-    //@FindBy(xpath = "//div[@id=':a1']")
     @FindBy(css = "div[class^=Am]")
     private WebElement emailBodyField;
 
@@ -57,20 +56,8 @@ public class GmailCom extends BasePage {
         emailSubjField.sendKeys(subj);
     }
 
-    public void typeBodyEmail(String body) {
-        emailBodyField.sendKeys(body);
-    }
-
-    public WebElement getSendEmailButton() {
-        return sendEmailButton;
-    }
-
     public void sendEmail() {
         sendEmailButton.click();
-    }
-
-    public WebElement getNewEmailButton() {
-        return newEmailButton;
     }
 
     public void mouseMoveToCreateNewEmailButton() {
@@ -80,10 +67,6 @@ public class GmailCom extends BasePage {
 
     public List<WebElement> getListEmailsUnRead() {
         return listEmailsUnRead;
-    }
-
-    public WebElement getInboxButton() {
-        return inboxButton;
     }
 
     public void clickOnInboxButton() {

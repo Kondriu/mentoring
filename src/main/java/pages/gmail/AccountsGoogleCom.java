@@ -15,7 +15,6 @@ public class AccountsGoogleCom extends BasePage {
     @FindBy(css = "input[type=email]")
     private WebElement setEmailField;
 
-    //@FindBy(xpath = "//div[@class='qhFLie']//span[@class='RveJvd snByac']")
     @FindBy(css = "span[class='RveJvd snByac']")
     private WebElement nextButton;
 
@@ -46,10 +45,6 @@ public class AccountsGoogleCom extends BasePage {
 
     public void clickNextButton() {
         nextButton.click();
-    }
-
-    public WebElement getNextButton() {
-        return nextButton;
     }
 
     public void expandGoogleMenu() {
