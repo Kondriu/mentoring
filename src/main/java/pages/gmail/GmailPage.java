@@ -2,11 +2,9 @@ package pages.gmail;
 
 import lombok.Data;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 
@@ -32,10 +30,6 @@ public class GmailPage extends BasePage {
 
     @FindBy(css = "div[class^='T-I J-J5-Ji aoO v7 T-I-atl L3']")
     private WebElement sendEmailButton;
-
-//    @FindBys({
-//            @FindBy(css = "span[class=bog]>span[class=bqe]")
-//    })
 
     @FindBy(css = "span[class=bog]>span[class=bqe]")
     private List<WebElement> listEmailsUnRead;
@@ -86,7 +80,7 @@ public class GmailPage extends BasePage {
         inboxButton.click();
     }
 
-    public List<String> listOfUnReadEmailsSubjects(){
+    public List<String> listOfUnReadEmailsSubjects() {
         List<String> listOfUnReadEmailsSubjectsStrings = getListEmailsUnRead().
                 stream().
                 map(x -> x.getText()).
@@ -94,7 +88,7 @@ public class GmailPage extends BasePage {
         return listOfUnReadEmailsSubjectsStrings;
     }
 
-    public String getTopSubjectInEmailsList(){
+    public String getTopSubjectInEmailsList() {
         return listOfUnReadEmailsSubjects().get(0);
     }
 }

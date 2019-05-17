@@ -41,7 +41,7 @@ public class BasePage {
         driver.switchTo().window(listOfBrowserTabs.get(tabIndex));
     }
 
-    public void waitJsExecutor(){
+    public void waitJsExecutor() {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeScript("return((window.jQuery != null) && (jQuery.active === 0))").equals("true");
 

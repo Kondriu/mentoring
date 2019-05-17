@@ -36,7 +36,7 @@ public class GmailLettersTest extends BaseTest {
 
         Integer countUnreadedAfterTest = gmailPage.getListEmailsUnRead().size();
 
-        Assert.assertTrue("Did not added any new email...",countUnreadedAfterTest > countExistUnreaded);
+        Assert.assertTrue("Did not added any new email...", countUnreadedAfterTest > countExistUnreaded);
         Assert.assertEquals("Message Subject mismatch", propertiesReader().getValue("email.subject"), gmailPage.getTopSubjectInEmailsList());
 
     }
