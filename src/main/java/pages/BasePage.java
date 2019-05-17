@@ -6,14 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import properties.WebDriverSettings;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
-
-    public static final Integer TIMEOUT = 20;
 
     public static WebDriver driver;
 
@@ -30,7 +29,7 @@ public class BasePage {
     }
 
     public static void waitFor(ExpectedCondition condition) {
-        (new WebDriverWait(driver, TIMEOUT)).until(condition);
+        (new WebDriverWait(driver, WebDriverSettings.TIMEOUT)).until(condition);
     }
 
     public void visitPage(String uri) {
