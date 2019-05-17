@@ -15,7 +15,7 @@ public class EnvironmentPropertiesReader {
         properties.load(new FileInputStream(pathToResources));
     }
 
-    public String getEnvironmentValue(final String key) {
+    public String getValue(final String key) {
         final String value = properties.getProperty(key);
         return value;
     }

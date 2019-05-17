@@ -1,16 +1,15 @@
 package pages.gmail;
 
 import lombok.Data;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 
-@Data
-public class AccountsGoogleCom extends BasePage {
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-    private WebDriver driver;
+@Data
+public class GoogleAccountsPage extends BasePage {
 
     @FindBy(css = "input[type=email]")
     private WebElement setEmailField;
@@ -28,32 +27,38 @@ public class AccountsGoogleCom extends BasePage {
     private WebElement gmailLinkButton;
 
 
-    public AccountsGoogleCom(final WebDriver driver) {
-        this.driver = driver;
+    public GoogleAccountsPage() {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
+
     public void typeEmail(String email) {
+        waitFor(visibilityOf(setEmailField));
         setEmailField.clear();
         setEmailField.sendKeys(email);
     }
 
     public void typePassword(String passw) {
+        waitFor(visibilityOf(setPasswordField));
         setPasswordField.clear();
         setPasswordField.sendKeys(passw);
     }
 
     public void clickNextButton() {
+        waitFor(visibilityOf(nextButton));
         nextButton.click();
     }
 
     public void expandGoogleMenu() {
+        waitFor(visibilityOf(googleMenuButton));
         googleMenuButton.click();
     }
 
-    public GmailCom clickOnGmailLink() {
+    public GmailPage clickOnGmailLink() {
+        waitFor(visibilityOf(gmailLinkButton));
         gmailLinkButton.click();
-        return new GmailCom(driver);
+        return new GmailPage();
     }
 
 }
