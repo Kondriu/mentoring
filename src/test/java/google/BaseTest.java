@@ -17,8 +17,7 @@ public class BaseTest {
     private WebDriver driver;
 
     public EnvironmentPropertiesReader propertiesReader() throws IOException {
-        EnvironmentPropertiesReader environmentPropertiesReader = new EnvironmentPropertiesReader();
-        return environmentPropertiesReader;
+        return new EnvironmentPropertiesReader();
     }
 
     @Before
