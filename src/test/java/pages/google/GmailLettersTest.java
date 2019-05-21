@@ -34,7 +34,6 @@ public class GmailLettersTest extends BaseTest {
         gmailPage.clickOnInboxButton();
 
         Assert.assertEquals("Message Subject mismatch", newSubject.trim(), gmailPage.getTopSubjectInEmailsList().trim());
-        gmailPage.waitForEmailCreatedByGoogle();
 
     }
 }

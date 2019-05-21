@@ -106,10 +106,5 @@ public class GmailPage extends BasePage {
             return StringUtils.EMPTY;
         }
     }
-
-    public void waitForEmailCreatedByGoogle() {
-        if (reviewMessage != null) {
-            waitFor(invisibilityOf(reviewMessage));
-        }
-    }
+    
 }
