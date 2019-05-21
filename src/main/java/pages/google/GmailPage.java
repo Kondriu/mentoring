@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,7 +92,7 @@ public class GmailPage extends BasePage {
     public List<String> listOfUnReadEmailsSubjects() {
         return getListEmailsUnRead().
                 stream().
-                map(x -> x.getText()).
+                map(WebElement::getText).
                 collect(Collectors.toList());
 
     }
@@ -103,5 +104,11 @@ public class GmailPage extends BasePage {
             return StringUtils.EMPTY;
         }
     }
+
+    public String createSubject(){
+        return String.format("Subject - " + "'%s' ", Calendar.getInstance().getTime()).trim();
+
+    }
+
 
 }
