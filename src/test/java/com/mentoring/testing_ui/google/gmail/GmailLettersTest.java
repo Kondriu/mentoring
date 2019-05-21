@@ -1,10 +1,10 @@
-package com.mentoring.google.gmail;
+package com.mentoring.testing_ui.google.gmail;
 
-import com.mentoring.google.pages.gmail.GmailPage;
-import com.mentoring.google.pages.gmail.GoogleAccountsPage;
+import com.mentoring.testing_ui.google.pages.gmail.GmailPage;
+import com.mentoring.testing_ui.google.pages.gmail.GoogleAccountsPage;
 import org.junit.Assert;
 import org.junit.Test;
-import com.mentoring.google.BaseTest;
+import com.mentoring.testing_ui.google.BaseTest;
 
 import java.io.IOException;
 

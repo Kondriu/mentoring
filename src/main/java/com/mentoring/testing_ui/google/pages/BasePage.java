@@ -1,4 +1,4 @@
-package com.mentoring.google.pages;
+package com.mentoring.testing_ui.google.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

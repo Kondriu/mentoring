@@ -1,4 +1,4 @@
-package com.mentoring.google;
+package com.mentoring.testing_ui.google;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -8,8 +8,8 @@ import utills.PropertiesReader;
 
 import java.io.IOException;
 
-import static com.mentoring.google.pages.BasePage.getDriver;
-import static com.mentoring.google.pages.BasePage.setDriver;
+import static com.mentoring.testing_ui.google.pages.BasePage.getDriver;
+import static com.mentoring.testing_ui.google.pages.BasePage.setDriver;
 
 public class BaseTest {
 

@@ -1,6 +1,6 @@
-package com.mentoring.google.pages.gmail;
+package com.mentoring.testing_ui.google.pages.gmail;
 
-import com.mentoring.google.pages.BasePage;
+import com.mentoring.testing_ui.google.pages.BasePage;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
