@@ -1,4 +1,4 @@
-package pages;
+package google;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BasePage {
 
-    protected static WebDriver driver;
+    private static WebDriver driver;
 
     public BasePage(final WebDriver driver) {
         setDriver(driver);
@@ -21,8 +21,8 @@ public class BasePage {
         return driver;
     }
 
-    public void setDriver(WebDriver driver){
-        this.driver = driver;
+    public static void setDriver(WebDriver Webdriver) {
+        driver = Webdriver;
     }
 
     public static void waitFor(ExpectedCondition<?> condition) {

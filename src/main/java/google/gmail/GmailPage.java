@@ -1,4 +1,4 @@
-package pages.google;
+package google.gmail;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.BasePage;
+import google.BasePage;
 
 import java.util.Calendar;
 import java.util.List;
@@ -48,7 +48,7 @@ public class GmailPage extends BasePage {
 
     public void mouseMoveToCreateNewEmailButton() {
         waitFor(visibilityOf(newEmailButton));
-        Actions action = new Actions(driver);
+        Actions action = new Actions(getDriver());
         action.moveToElement(newEmailButton).perform();
     }
 
@@ -106,7 +106,7 @@ public class GmailPage extends BasePage {
     }
 
     public String createSubject(){
-        return String.format("Subject - " + "'%s' ", Calendar.getInstance().getTime()).trim();
+        return String.format("Subject - '%s' ", Calendar.getInstance().getTime()).trim();
 
     }
 

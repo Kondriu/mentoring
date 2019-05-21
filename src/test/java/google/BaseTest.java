@@ -1,4 +1,4 @@
-package pages;
+package google;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -10,10 +10,11 @@ import utills.EnvironmentPropertiesReader;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static pages.BasePage.*;
+import static google.BasePage.setDriver;
 
 public class BaseTest {
 
+    private WebDriver driver;
 
     public EnvironmentPropertiesReader propertiesReader() throws IOException {
         EnvironmentPropertiesReader environmentPropertiesReader = new EnvironmentPropertiesReader();
@@ -26,6 +27,8 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        setDriver(driver);
+
     }
 
     @After

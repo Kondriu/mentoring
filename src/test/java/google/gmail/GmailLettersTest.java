@@ -1,8 +1,8 @@
-package pages.google;
+package google.gmail;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pages.BaseTest;
+import google.BaseTest;
 
 import java.io.IOException;
 
