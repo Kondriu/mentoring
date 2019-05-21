@@ -1,7 +1,9 @@
-package pages.gmail;
+package pages.google;
 
 import lombok.Data;
 
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +17,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 @Data
 public class GmailPage extends BasePage {
+
 
     @FindBy(css = "div[class=z0]>div")
     private WebElement newEmailButton;
@@ -37,9 +40,12 @@ public class GmailPage extends BasePage {
     @FindBy(css = "a[href$='/#inbox']")
     private WebElement inboxButton;
 
+    @FindBy(css = "span[id='link_vsm']")
+    private WebElement reviewMessage;
+
     public GmailPage() {
-        super(driver);
-        PageFactory.initElements(driver, this);
+        super(getDriver());
+        PageFactory.initElements(getDriver(), this);
     }
 
     public void mouseMoveToCreateNewEmailButton() {
@@ -49,6 +55,7 @@ public class GmailPage extends BasePage {
     }
 
     public void clickCreateNewEmail() {
+        executeJavaScript("return((window.jQuery != null) && (jQuery.active === 0))");
         waitFor(elementToBeClickable(newEmailButton));
         newEmailButton.click();
     }
@@ -64,31 +71,45 @@ public class GmailPage extends BasePage {
     }
 
     public void sendEmail() {
+        executeJavaScript("return((window.jQuery != null) && (jQuery.active === 0))");
         waitFor(visibilityOf(sendEmailButton));
+        waitFor(elementToBeClickable(sendEmailButton));
         sendEmailButton.click();
     }
 
     public List<WebElement> getListEmailsUnRead() {
-        waitFor(visibilityOfAllElements(listEmailsUnRead));
         return listEmailsUnRead;
     }
 
+
     public void clickOnInboxButton() {
-        waitJsExecutor();
+        executeJavaScript("return((window.jQuery != null) && (jQuery.active === 0))");
+        waitFor(presenceOfElementLocated(By.cssSelector("a[href$='/#inbox']")));
         waitFor(visibilityOf(inboxButton));
         waitFor(elementToBeClickable(inboxButton));
         inboxButton.click();
     }
 
+
     public List<String> listOfUnReadEmailsSubjects() {
-        List<String> listOfUnReadEmailsSubjectsStrings = getListEmailsUnRead().
+        return getListEmailsUnRead().
                 stream().
                 map(x -> x.getText()).
                 collect(Collectors.toList());
-        return listOfUnReadEmailsSubjectsStrings;
+
     }
 
     public String getTopSubjectInEmailsList() {
-        return listOfUnReadEmailsSubjects().get(0);
+        if (!listOfUnReadEmailsSubjects().isEmpty()) {
+            return listOfUnReadEmailsSubjects().get(0);
+        } else {
+            return StringUtils.EMPTY;
+        }
+    }
+
+    public void waitForEmailCreatedByGoogle() {
+        if (reviewMessage != null) {
+            waitFor(invisibilityOf(reviewMessage));
+        }
     }
 }

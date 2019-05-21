@@ -1,12 +1,11 @@
-package gmail;
+package pages.google;
 
-import common.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
-import pages.gmail.GoogleAccountsPage;
-import pages.gmail.GmailPage;
+import pages.BaseTest;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class GmailLettersTest extends BaseTest {
 
@@ -18,26 +17,24 @@ public class GmailLettersTest extends BaseTest {
         accountsPage.visitPage(propertiesReader().getValue("google.accounts.page.uri"));
         accountsPage.typeEmail(propertiesReader().getValue("user.login"));
         accountsPage.clickNextButton();
-        accountsPage.typePassword(propertiesReader().getValue("user.passw"));
+        accountsPage.typePassword(propertiesReader().getValue("user.password"));
         accountsPage.clickNextButton();
         accountsPage.expandGoogleMenu();
 
         GmailPage gmailPage = accountsPage.clickOnGmailLink();
         gmailPage.switchToBrowserTab(1);
 
-        Integer countExistUnreaded = gmailPage.getListEmailsUnRead().size();
-
         gmailPage.mouseMoveToCreateNewEmailButton();
         gmailPage.clickCreateNewEmail();
         gmailPage.typeReceiversEmail(propertiesReader().getValue("email.to"));
-        gmailPage.typeSubject(propertiesReader().getValue("email.subject"));
+        String newSubject = String.format("Subject - " + propertiesReader().getValue("email.subject") + " '%s' ", Calendar.getInstance().getTime());
+        gmailPage.typeSubject(newSubject);
         gmailPage.sendEmail();
+
         gmailPage.clickOnInboxButton();
 
-        Integer countUnreadedAfterTest = gmailPage.getListEmailsUnRead().size();
-
-        Assert.assertTrue("Did not added any new email...", countUnreadedAfterTest > countExistUnreaded);
-        Assert.assertEquals("Message Subject mismatch", propertiesReader().getValue("email.subject"), gmailPage.getTopSubjectInEmailsList());
+        Assert.assertEquals("Message Subject mismatch", newSubject.trim(), gmailPage.getTopSubjectInEmailsList().trim());
+        gmailPage.waitForEmailCreatedByGoogle();
 
     }
 }

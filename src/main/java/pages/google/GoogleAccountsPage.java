@@ -1,4 +1,4 @@
-package pages.gmail;
+package pages.google;
 
 import lombok.Data;
 import org.openqa.selenium.WebElement;
@@ -28,8 +28,8 @@ public class GoogleAccountsPage extends BasePage {
 
 
     public GoogleAccountsPage() {
-        super(driver);
-        PageFactory.initElements(driver, this);
+        super(getDriver());
+        PageFactory.initElements(getDriver(), this);
     }
 
 
