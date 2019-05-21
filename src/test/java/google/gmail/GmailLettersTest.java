@@ -29,10 +29,8 @@ public class GmailLettersTest extends BaseTest {
         gmailPage.typeReceiversEmail(propertiesReader().getValue("email.to"));
         gmailPage.typeSubject(newSubject);
         gmailPage.sendEmail();
-
         gmailPage.clickOnInboxButton();
 
         Assert.assertEquals("Message Subject mismatch", newSubject, gmailPage.getTopSubjectInEmailsList());
-
     }
 }

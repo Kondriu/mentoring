@@ -29,7 +29,6 @@ public class BasePage {
         (new WebDriverWait(getDriver(), Configuration.TIMEOUT)).until(condition);
     }
 
-
     public void visitPage(String uri) {
         getDriver().get(uri);
     }

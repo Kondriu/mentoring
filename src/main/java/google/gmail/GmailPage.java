@@ -79,7 +79,6 @@ public class GmailPage extends BasePage {
         return listEmailsUnRead;
     }
 
-
     public void clickOnInboxButton() {
         executeJavaScript("return((window.jQuery != null) && (jQuery.active === 0))");
         waitFor(presenceOfElementLocated(By.cssSelector("a[href$='/#inbox']")));
@@ -87,7 +86,6 @@ public class GmailPage extends BasePage {
         waitFor(elementToBeClickable(inboxButton));
         inboxButton.click();
     }
-
 
     public List<String> listOfUnReadEmailsSubjects() {
         return getListEmailsUnRead().
@@ -105,10 +103,8 @@ public class GmailPage extends BasePage {
         }
     }
 
-    public String createSubject(){
+    public String createSubject() {
         return String.format("Subject - '%s' ", Calendar.getInstance().getTime()).trim();
 
     }
-
-
 }
