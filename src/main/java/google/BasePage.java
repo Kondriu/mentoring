@@ -21,8 +21,8 @@ public class BasePage {
         return driver;
     }
 
-    public static void setDriver(WebDriver Webdriver) {
-        driver = Webdriver;
+    public static void setDriver(WebDriver webDriver) {
+        driver = webDriver;
     }
 
     public static void waitFor(ExpectedCondition<?> condition) {
