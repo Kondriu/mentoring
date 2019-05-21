@@ -1,14 +1,12 @@
-package google.gmail;
+package com.mentoring.google.pages.gmail;
 
-import lombok.Data;
+import com.mentoring.google.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import google.BasePage;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-@Data
 public class GoogleAccountsPage extends BasePage {
 
     @FindBy(css = "input[type=email]")
@@ -26,12 +24,9 @@ public class GoogleAccountsPage extends BasePage {
     @FindBy(css = "a[href='https://mail.google.com/mail/?tab=km']")
     private WebElement gmailLinkButton;
 
-
     public GoogleAccountsPage() {
-        super(getDriver());
         PageFactory.initElements(getDriver(), this);
     }
-
 
     public void typeEmail(String email) {
         waitFor(visibilityOf(setEmailField));

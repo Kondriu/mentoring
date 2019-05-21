@@ -1,14 +1,11 @@
-package google.gmail;
+package com.mentoring.google.pages.gmail;
 
-import lombok.Data;
-
+import com.mentoring.google.pages.BasePage;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import google.BasePage;
 
 import java.util.Calendar;
 import java.util.List;
@@ -16,9 +13,7 @@ import java.util.stream.Collectors;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-@Data
 public class GmailPage extends BasePage {
-
 
     @FindBy(css = "div[class=z0]>div")
     private WebElement newEmailButton;
@@ -42,14 +37,12 @@ public class GmailPage extends BasePage {
     private WebElement inboxButton;
 
     public GmailPage() {
-        super(getDriver());
         PageFactory.initElements(getDriver(), this);
     }
 
     public void mouseMoveToCreateNewEmailButton() {
         waitFor(visibilityOf(newEmailButton));
-        Actions action = new Actions(getDriver());
-        action.moveToElement(newEmailButton).perform();
+        mouseMoveTo(newEmailButton);
     }
 
     public void clickCreateNewEmail() {
@@ -92,7 +85,6 @@ public class GmailPage extends BasePage {
                 stream().
                 map(WebElement::getText).
                 collect(Collectors.toList());
-
     }
 
     public String getTopSubjectInEmailsList() {
@@ -105,6 +97,5 @@ public class GmailPage extends BasePage {
 
     public String createSubject() {
         return String.format("Subject - '%s' ", Calendar.getInstance().getTime()).trim();
-
     }
 }

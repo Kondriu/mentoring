@@ -1,7 +1,9 @@
-package google;
+package com.mentoring.google.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import properties.Configuration;
@@ -12,10 +14,6 @@ import java.util.List;
 public class BasePage {
 
     private static WebDriver driver;
-
-    public BasePage(final WebDriver driver) {
-        setDriver(driver);
-    }
 
     public static WebDriver getDriver() {
         return driver;
@@ -39,7 +37,11 @@ public class BasePage {
     }
 
     public void executeJavaScript(String script) {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) getDriver();
-        javascriptExecutor.executeScript(script).equals("true");
+        ((JavascriptExecutor) getDriver()).executeScript(script);
+    }
+
+    public void mouseMoveTo(WebElement webElement) {
+        Actions action = new Actions(getDriver());
+        action.moveToElement(webElement).perform();
     }
 }
