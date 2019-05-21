@@ -40,9 +40,6 @@ public class GmailPage extends BasePage {
     @FindBy(css = "a[href$='/#inbox']")
     private WebElement inboxButton;
 
-    @FindBy(css = "span[id='link_vsm']")
-    private WebElement reviewMessage;
-
     public GmailPage() {
         super(getDriver());
         PageFactory.initElements(getDriver(), this);
@@ -106,5 +103,5 @@ public class GmailPage extends BasePage {
             return StringUtils.EMPTY;
         }
     }
-    
+
 }
