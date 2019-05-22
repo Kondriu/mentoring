@@ -1,4 +1,4 @@
-package com.mentoring.testing_api.openweathermap.dto.ByCity;
+package com.mentoring.testing_api.openweathermap.dto.by_city;
 
 public class ByCityMainDto {
 

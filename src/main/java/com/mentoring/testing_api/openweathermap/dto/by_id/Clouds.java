@@ -1,4 +1,4 @@
-package com.mentoring.testing_api.openweathermap.dto.ById;
+package com.mentoring.testing_api.openweathermap.dto.by_id;
 
 import lombok.Data;
 
