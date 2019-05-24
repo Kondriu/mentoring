@@ -8,16 +8,14 @@ import com.mentoring.api.openweathermap.dto.ByZipCodeDto;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
-
-public class GetWeatherTest extends BaseTest {
+public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
 
     @Test
     public void testGetCurrentWeatherByCityName() {
         log.info("start test \"Get current weather by city name.\"");
-        OpenWeather openWeather = new OpenWeather();
-        ByCityDto response = openWeather.getCurrentWeatherByCity(propertiesReader().getValue("kiev.name"));
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        ByCityDto response = openWeatherService.getCurrentWeatherByCity(propertiesReader().getValue("kiev.name"));
 
         Assert.assertEquals("Names of cities mismatch",
                 propertiesReader().getValue("kiev.expected.name"),
@@ -27,8 +25,8 @@ public class GetWeatherTest extends BaseTest {
     @Test
     public void testGetCurrentWeatherByCytyId() {
         log.info("start test \"Get current weather by city ID.\"");
-        OpenWeather openWeather = new OpenWeather();
-        ByIdDto response = openWeather.getCurrentWeatherById(propertiesReader().getValue("kiev.id"));
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        ByIdDto response = openWeatherService.getCurrentWeatherById(propertiesReader().getValue("kiev.id"));
 
         Assert.assertEquals("Names of cities mismatch",
                 propertiesReader().getValue("kiev.expected.name"),
@@ -38,8 +36,8 @@ public class GetWeatherTest extends BaseTest {
     @Test
     public void testGetCurrentWeatherByCityCoordinates() {
         log.info("start test \"Get current weather by city Coordinates.\"");
-        OpenWeather openWeather = new OpenWeather();
-        ByCoordinatesDto response = openWeather.
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        ByCoordinatesDto response = openWeatherService.
                 getCurrentWeatherByCoordinates(
                         propertiesReader().getValue("kiev.latitude"),
                         propertiesReader().getValue("kiev.longitude"));
@@ -52,9 +50,9 @@ public class GetWeatherTest extends BaseTest {
     @Test
     public void testGetCurrentWeatherByCityZipCode() {
         log.info("start test \"Get current weather by ZIP code.\"");
-        OpenWeather openWeather = new OpenWeather();
+        OpenWeatherService openWeatherService = new OpenWeatherService();
         String requestQuee = propertiesReader().getValue("kiev.zip") + "," + propertiesReader().getValue("country.code");
-        ByZipCodeDto response = openWeather.getCurrentWeatherByZipCode(requestQuee);
+        ByZipCodeDto response = openWeatherService.getCurrentWeatherByZipCode(requestQuee);
 
         Assert.assertEquals("Names of cities mismatch",
                 propertiesReader().getValue("kiev.expected.name.by.zip.code"),
@@ -62,36 +60,40 @@ public class GetWeatherTest extends BaseTest {
     }
 
     @Test
-    public void testResponseBodyByCityName() throws IOException {
-        OpenWeather openWeather = new OpenWeather();
-        openWeather.assertContains(
-                openWeather.getBodyByCityName(propertiesReader().getValue("kiev.name")),
-                openWeather.getListItemsToValidate("src/test/resources/items.to.validate.by.name.txt"));
+    public void testResponseBodyByCityName() {
+        log.info("test Response Body by city name");
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        openWeatherService.assertContains(
+                openWeatherService.getBodyByCityName(propertiesReader().getValue("kiev.name")),
+                openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.name.txt"));
     }
 
     @Test
     public void testResponseBodyByCityId() {
-        OpenWeather openWeather = new OpenWeather();
-        openWeather.assertContains(
-                openWeather.getBodyByCityId(propertiesReader().getValue("kiev.id")),
-                openWeather.getListItemsToValidate("src/test/resources/items.to.validate.by.id.txt"));
+        log.info("test Response Body by city ID");
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        openWeatherService.assertContains(
+                openWeatherService.getBodyByCityId(propertiesReader().getValue("kiev.id")),
+                openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.id.txt"));
     }
 
     @Test
     public void testResponseBodyByCityCoordinates() {
-        OpenWeather openWeather = new OpenWeather();
-        openWeather.assertContains(
-                openWeather.getBodyByCityCoordinates(
+        log.info("test Response Body by city coordinates");
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        openWeatherService.assertContains(
+                openWeatherService.getBodyByCityCoordinates(
                         propertiesReader().getValue("kiev.latitude"),
                         propertiesReader().getValue("kiev.longitude")),
-                openWeather.getListItemsToValidate("src/test/resources/items.to.validate.by.coordinates.txt"));
+                openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.coordinates.txt"));
     }
 
     @Test
     public void testResponseBodyByCityZipCode() {
-        OpenWeather openWeather = new OpenWeather();
-        openWeather.assertContains(
-                openWeather.getBodyByCityName(propertiesReader().getValue("kiev.zip")),
-                openWeather.getListItemsToValidate("src/test/resources/items.to.validate.by.zip.txt"));
+        log.info("test Response Body by city ZIP code");
+        OpenWeatherService openWeatherService = new OpenWeatherService();
+        openWeatherService.assertContains(
+                openWeatherService.getBodyByCityName(propertiesReader().getValue("kiev.zip")),
+                openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.zip.txt"));
     }
 }

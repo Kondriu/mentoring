@@ -16,7 +16,6 @@ temp_max
 visibility
 wind
 speed
-deg
 clouds
 all
 dt

@@ -1,11 +1,9 @@
 package com.mentoring.api.openweathermap.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mentoring.api.openweathermap.dto.details_dto.*;
 
 import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ByCityDto {
 
     private Coord coord;

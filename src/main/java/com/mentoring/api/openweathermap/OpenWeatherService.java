@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class OpenWeather {
+public class OpenWeatherService {
 
-    private static final Logger log = Logger.getLogger(OpenWeather.class);
+    private static final Logger log = Logger.getLogger(OpenWeatherService.class);
 
-    public OpenWeather() {
+    public OpenWeatherService() {
         RestAssured.baseURI = propertiesReader.getValue("openweather.uri");
     }
 
@@ -97,6 +97,7 @@ public class OpenWeather {
     public ResponseBody getBodyByCityName(String cityName){
         return RestAssured
                 .given()
+                .log().uri()
                 .queryParam("q", cityName)
                 .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
                 .get(propertiesReader.getValue("openweather.search.path"))
@@ -105,6 +106,7 @@ public class OpenWeather {
     public ResponseBody getBodyByCityId(String cityId){
         return RestAssured
                 .given()
+                .log().uri()
                 .queryParam("id", cityId)
                 .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
                 .get(propertiesReader.getValue("openweather.search.path"))
@@ -113,6 +115,7 @@ public class OpenWeather {
     public ResponseBody getBodyByCityCoordinates(String lat, String lon){
         return RestAssured
                 .given()
+                .log().uri()
                 .queryParam("lat", lat)
                 .queryParam("lon", lon)
                 .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
@@ -122,6 +125,7 @@ public class OpenWeather {
     public ResponseBody getBodyByCityZipCode(String zipCode){
         return RestAssured
                 .given()
+                .log().uri()
                 .queryParam("zip", zipCode)
                 .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
                 .get(propertiesReader.getValue("openweather.search.path"))
