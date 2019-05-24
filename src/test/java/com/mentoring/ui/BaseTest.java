@@ -1,4 +1,4 @@
-package com.mentoring.iu;
+package com.mentoring.ui;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

@@ -9,7 +9,7 @@ public class PropertiesReader {
     private Properties properties;
 
     public PropertiesReader() throws IOException {
-        String pathToResources = "src/test/resources/resources.properties";
+        String pathToResources = "src/test/resources/ui.resources.properties";
         properties = new Properties();
         properties.load(new FileInputStream(pathToResources));
     }

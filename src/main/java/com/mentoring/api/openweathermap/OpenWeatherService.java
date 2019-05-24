@@ -25,6 +25,8 @@ public class OpenWeatherService {
     public PropertiesReader propertiesReader = new PropertiesReader();
 
     public ByCityDto getCurrentWeatherByCity(String cityName) {
+        log.info("start test \"Get current weather by city name.\"");
+
         return RestAssured
                 .given()
                 .log().ifValidationFails()
@@ -43,6 +45,8 @@ public class OpenWeatherService {
     }
 
     public ByIdDto getCurrentWeatherById(String cityId) {
+        log.info("start test \"Get current weather by city ID.\"");
+
         return RestAssured
                 .given()
                 .log().uri()
@@ -60,6 +64,8 @@ public class OpenWeatherService {
     }
 
     public ByCoordinatesDto getCurrentWeatherByCoordinates(String lat, String lon) {
+        log.info("start test \"Get current weather by city Coordinates.\"");
+
         return RestAssured
                 .given()
                 .log().uri()
@@ -78,6 +84,8 @@ public class OpenWeatherService {
     }
 
     public ByZipCodeDto getCurrentWeatherByZipCode(String zipCode){
+        log.info("start test \"Get current weather by ZIP code.\"");
+
         return  RestAssured
                 .given()
                 .log().uri()
@@ -95,6 +103,8 @@ public class OpenWeatherService {
     }
 
     public ResponseBody getBodyByCityName(String cityName){
+        log.info("test Response Body by city name");
+
         return RestAssured
                 .given()
                 .log().uri()
@@ -104,6 +114,8 @@ public class OpenWeatherService {
                 .getBody();
     }
     public ResponseBody getBodyByCityId(String cityId){
+        log.info("test Response Body by city ID");
+
         return RestAssured
                 .given()
                 .log().uri()
@@ -113,6 +125,8 @@ public class OpenWeatherService {
                 .getBody();
     }
     public ResponseBody getBodyByCityCoordinates(String lat, String lon){
+        log.info("test Response Body by city coordinates");
+
         return RestAssured
                 .given()
                 .log().uri()
@@ -123,6 +137,8 @@ public class OpenWeatherService {
                 .getBody();
     }
     public ResponseBody getBodyByCityZipCode(String zipCode){
+        log.info("test Response Body by city ZIP code");
+
         return RestAssured
                 .given()
                 .log().uri()

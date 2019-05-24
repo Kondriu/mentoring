@@ -8,7 +8,7 @@ public class PropertiesReader {
     private Properties properties;
 
     public PropertiesReader() {
-        String pathToResources = "src/test/resources/resources.properties";
+        String pathToResources = "src/test/resources/api.resources.properties";
         properties = new Properties();
         try {
             properties.load(new FileInputStream(pathToResources));

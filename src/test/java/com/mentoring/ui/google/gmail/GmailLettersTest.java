@@ -1,6 +1,6 @@
-package com.mentoring.iu.google.gmail;
+package com.mentoring.ui.google.gmail;
 
-import com.mentoring.iu.BaseTest;
+import com.mentoring.ui.BaseTest;
 import com.mentoring.ui.google.pages.gmail.GmailPage;
 import com.mentoring.ui.google.pages.gmail.GoogleAccountsPage;
 import org.junit.Assert;
