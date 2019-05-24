@@ -18,10 +18,6 @@ public class OpenWeatherService {
 
     private static final Logger log = Logger.getLogger(OpenWeatherService.class);
 
-    public OpenWeatherService() {
-        RestAssured.baseURI = propertiesReader.getValue("openweather.uri");
-    }
-
     public PropertiesReader propertiesReader = new PropertiesReader();
 
     public ByCityDto getCurrentWeatherByCity(String cityName) {
