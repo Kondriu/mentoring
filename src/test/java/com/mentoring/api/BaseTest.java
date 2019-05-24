@@ -7,12 +7,15 @@ import org.junit.Before;
 public class BaseTest {
 
 
-    public static PropertiesReader propertiesReader() {
-        return new PropertiesReader();
-    }
+//    public static PropertiesReader propertiesReader() {
+//        return new PropertiesReader();
+//    }
+    public PropertiesReader propertiesReader;
 
     @Before
     public void startupSetup() {
-        RestAssured.baseURI = propertiesReader().getValue("openweather.uri");
+        propertiesReader = new PropertiesReader();
+
+        RestAssured.baseURI = propertiesReader.getValue("openweather.uri");
     }
 }
