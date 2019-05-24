@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "http://api.openweathermap.org/schemas/myschema.json",
+  "type": "object",
+  "properies": {
+    "coord" :
+    {
+      "title": "coord",
+      "type": "object",
+      "properties": {
+        "lon": {
+          "type": "number"
+        },
+        "lat": {
+          "type": "number"
+        }
+      }
+    },
+    "weather":
+    {
+      "title" : "weather",
+      "type"  : "array",
+      "items" : {
+        "type"      : "object",
+        "properties": {
+          "id"    : {"type": "number"},
+          "main"  : {"type": "string"},
+          "description": {"type": "string"},
+          "icon"  : {"type": "string"}
+        }
+      }
+    },
+
+    "base": {"type": "string"},
+
+    "main":
+    {
+      "title" : "main",
+      "type"  : "object",
+      "properties": {
+        "temp"    : {"type": "number"},
+        "pressure": {"type": "number"},
+        "humidity": {"type": "number"},
+        "temp_min": {"type": "number"},
+        "temp_max": {"type": "number"}
+      }
+    },
+
+    "visibility": {"type": "number"},
+
+    "wind":
+    {
+      "title" : "wind",
+      "type"  : "object",
+      "properties": {
+        "speed": {"type": "number"},
+        "deg": {"type" : "number"}
+      }
+    },
+
+    "clouds":
+    {
+      "title" : "clouds",
+      "type"  : "object",
+      "properties": {
+        "all": {"type" : "number"}
+      }
+    },
+
+    "dt": {"type": "number"},
+
+    "sys":
+    {
+      "title" : "sys",
+      "type"  : "object",
+      "properties": {
+        "type"    : {"type": "number"},
+        "id"      : {"type": "number"},
+        "message" : {"type": "number"},
+        "country" : {"type": "string"},
+        "sunrise" : {"type": "number"},
+        "sunset"  : {"type": "number"}
+      }
+    },
+
+    "timezone": {"type" : "number"},
+
+    "id": {"type" : "number"},
+
+    "name": {"type" : "string"},
+
+    "cod": {"type": "number"}
+  }
+}
