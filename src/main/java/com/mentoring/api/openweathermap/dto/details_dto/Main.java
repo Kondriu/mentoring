@@ -2,11 +2,11 @@ package com.mentoring.api.openweathermap.dto.details_dto;
 
 
 public class Main {
-    public double temp;
-    public int humidity;
-    public int pressure;
-    public double temp_min;
-    public double temp_max;
+    private double temp;
+    private int humidity;
+    private int pressure;
+    private double temp_min;
+    private double temp_max;
 
     public double getTemp() {
         return temp;

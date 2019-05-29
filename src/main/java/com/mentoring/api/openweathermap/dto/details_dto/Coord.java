@@ -1,8 +1,8 @@
 package com.mentoring.api.openweathermap.dto.details_dto;
 
 public class Coord {
-    public float lon;
-    public float lat;
+    private float lon;
+    private float lat;
 
     public float getLon() {
         return lon;

@@ -1,7 +1,7 @@
 package com.mentoring.api.openweathermap.dto.details_dto;
 
 public class Clouds {
-    public int all;
+    private int all;
 
     public int getAll() {
         return all;

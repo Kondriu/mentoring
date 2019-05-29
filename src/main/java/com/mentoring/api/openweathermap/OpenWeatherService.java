@@ -3,10 +3,12 @@ package com.mentoring.api.openweathermap;
 import com.github.fge.jsonschema.SchemaVersion;
 import com.github.fge.jsonschema.cfg.ValidationConfiguration;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.mentoring.api.openweathermap.dto.*;
+import com.mentoring.api.openweathermap.dto.ByCityDto;
+import com.mentoring.api.openweathermap.dto.ByCoordinatesDto;
+import com.mentoring.api.openweathermap.dto.ByIdDto;
+import com.mentoring.api.openweathermap.dto.ByZipCodeDto;
 import com.mentoring.api.utills.PropertiesReader;
 import io.restassured.RestAssured;
-import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ResponseBody;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -94,10 +96,10 @@ public class OpenWeatherService {
                 .as(ByCoordinatesDto.class);
     }
 
-    public ByZipCodeDto getCurrentWeatherByZipCode(String zipCode){
+    public ByZipCodeDto getCurrentWeatherByZipCode(String zipCode) {
         log.info("start test \"Get current weather by ZIP code.\"");
 
-        return  RestAssured
+        return RestAssured
                 .given()
                 .log().uri()
                 .queryParam("zip", zipCode)
@@ -113,7 +115,7 @@ public class OpenWeatherService {
                 .as(ByZipCodeDto.class);
     }
 
-    public ResponseBody getBodyByCityName(String cityName){
+    public ResponseBody getBodyByCityName(String cityName) {
         log.info("test Response Body by city name");
 
         return RestAssured
@@ -124,7 +126,8 @@ public class OpenWeatherService {
                 .get(propertiesReader.getValue("openweather.search.path"))
                 .getBody();
     }
-    public ResponseBody getBodyByCityId(String cityId){
+
+    public ResponseBody getBodyByCityId(String cityId) {
         log.info("test Response Body by city ID");
 
         return RestAssured
@@ -135,7 +138,8 @@ public class OpenWeatherService {
                 .get(propertiesReader.getValue("openweather.search.path"))
                 .getBody();
     }
-    public ResponseBody getBodyByCityCoordinates(String lat, String lon){
+
+    public ResponseBody getBodyByCityCoordinates(String lat, String lon) {
         log.info("test Response Body by city coordinates");
 
         return RestAssured
@@ -147,7 +151,8 @@ public class OpenWeatherService {
                 .get(propertiesReader.getValue("openweather.search.path"))
                 .getBody();
     }
-    public ResponseBody getBodyByCityZipCode(String zipCode){
+
+    public ResponseBody getBodyByCityZipCode(String zipCode) {
         log.info("test Response Body by city ZIP code");
 
         return RestAssured
@@ -159,9 +164,9 @@ public class OpenWeatherService {
                 .getBody();
     }
 
-    public void assertContains(ResponseBody body, List<String> titles){
+    public void assertContains(ResponseBody body, List<String> titles) {
         for (String item : titles) {
-            Assert.assertTrue("item "+item+" doesn't exist", body.asString().contains(item));
+            Assert.assertTrue("item " + item + " doesn't exist", body.asString().contains(item));
         }
     }
 
@@ -176,7 +181,7 @@ public class OpenWeatherService {
     }
 
 
-    public void validateJsonSchemaByCityName(String cityName){
+    public void validateJsonSchemaByCityName(String cityName) {
         log.info("validation JSON Schema by City Name");
         RestAssured
                 .given()
@@ -192,7 +197,7 @@ public class OpenWeatherService {
         ;
     }
 
-    public void validateJsonSchemaByCityId(String cityId){
+    public void validateJsonSchemaByCityId(String cityId) {
         log.info("validation JSON Schema by City ID");
 
         RestAssured
@@ -209,7 +214,7 @@ public class OpenWeatherService {
         ;
     }
 
-    public void validateJsonSchemaByCityCoordinates(String lat, String lon){
+    public void validateJsonSchemaByCityCoordinates(String lat, String lon) {
         log.info("validation JSON Schema by City coordinates");
 
         RestAssured
@@ -227,7 +232,7 @@ public class OpenWeatherService {
         ;
     }
 
-    public void validateJsonSchemaByCityZip(String cityZip){
+    public void validateJsonSchemaByCityZip(String cityZip) {
         log.info("validation JSON Schema by City ZIP");
 
         RestAssured
@@ -243,8 +248,6 @@ public class OpenWeatherService {
                 .log().ifError().extract()
         ;
     }
-
-
 
 
 }
