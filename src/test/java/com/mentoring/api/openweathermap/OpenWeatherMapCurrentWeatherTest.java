@@ -1,8 +1,5 @@
 package com.mentoring.api.openweathermap;
 
-import com.github.fge.jsonschema.SchemaVersion;
-import com.github.fge.jsonschema.cfg.ValidationConfiguration;
-import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.mentoring.api.BaseTest;
 import com.mentoring.api.openweathermap.dto.ByCityDto;
 import com.mentoring.api.openweathermap.dto.ByCoordinatesDto;
@@ -14,7 +11,6 @@ import org.junit.Test;
 public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     private OpenWeatherService openWeatherService = new OpenWeatherService();
-
 
     @Test
     public void testGetCurrentWeatherByCityName() {
@@ -85,7 +81,6 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
                 openWeatherService.getBodyByCityZipCode(propertiesReader.getValue("city.zip")),
                 openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.zip.txt"));
     }
-
 
     @Test
     public void testJsonSchemaValidationByCityName() {

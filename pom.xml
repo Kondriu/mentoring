@@ -16,8 +16,9 @@
         <webdrivermanager.version>3.6.0</webdrivermanager.version>
         <rest-assured.version>4.0.0</rest-assured.version>
         <log4j.version>1.2.17</log4j.version>
-        <lombok.version>1.18.8</lombok.version>
         <jackson-annotations.version>2.9.9</jackson-annotations.version>
+        <jackson-mapper-asl.version>1.8.5</jackson-mapper-asl.version>
+        <json-schema-core.version>1.2.5</json-schema-core.version>
 
     </properties>
 
@@ -34,11 +35,8 @@
         </plugins>
     </build>
 
-
     <dependencies>
 
-
-        <!-- Needed by junit -->
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -91,38 +89,28 @@
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson-annotations.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.8.5</version>
+            <version>${jackson-mapper-asl.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>3.0.0</version>
+            <version>${rest-assured.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+
         <dependency>
             <groupId>com.github.fge</groupId>
             <artifactId>json-schema-core</artifactId>
-            <version>1.2.5</version>
+            <version>${json-schema-core.version}</version>
         </dependency>
-
 
     </dependencies>
 

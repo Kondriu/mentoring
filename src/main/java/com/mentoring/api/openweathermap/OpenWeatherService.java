@@ -28,14 +28,14 @@ public class OpenWeatherService {
 
     public PropertiesReader propertiesReader = new PropertiesReader();
 
-    JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory.newBuilder()
+    JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory
+            .newBuilder()
             .setValidationConfiguration(
-                    ValidationConfiguration.newBuilder()
-                            .setDefaultVersion(SchemaVersion.DRAFTV4).freeze())
+                    ValidationConfiguration
+                            .newBuilder()
+                            .setDefaultVersion(SchemaVersion.DRAFTV4)
+                            .freeze())
             .freeze();
-
-    //JsonSchemaValidator jsonSchemaValidator;
-
 
     public ByCityDto getCurrentWeatherByCity(String cityName) {
         log.info("start test \"Get current weather by city name.\"");
@@ -193,8 +193,7 @@ public class OpenWeatherService {
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schema.json")
                         .using(jsonSchemaFactory))
-                .log().ifError().extract()
-        ;
+                .log().ifError().extract();
     }
 
     public void validateJsonSchemaByCityId(String cityId) {
@@ -210,8 +209,7 @@ public class OpenWeatherService {
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schema.json")
                         .using(jsonSchemaFactory))
-                .log().ifError().extract()
-        ;
+                .log().ifError().extract();
     }
 
     public void validateJsonSchemaByCityCoordinates(String lat, String lon) {
@@ -228,8 +226,7 @@ public class OpenWeatherService {
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schema.json")
                         .using(jsonSchemaFactory))
-                .log().ifError().extract()
-        ;
+                .log().ifError().extract();
     }
 
     public void validateJsonSchemaByCityZip(String cityZip) {
@@ -245,8 +242,7 @@ public class OpenWeatherService {
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schema.json")
                         .using(jsonSchemaFactory))
-                .log().ifError().extract()
-        ;
+                .log().ifError().extract();
     }
 
 
