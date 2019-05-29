@@ -2,8 +2,11 @@ package com.mentoring.api.openweathermap.dto.details_dto;
 
 
 public class Wind {
-    public double speed;
-    public double deg;
+    private double speed;
+    private double deg;
+
+
+    private int gust;
 
     public double getSpeed() {
         return speed;
@@ -19,5 +22,13 @@ public class Wind {
 
     public void setDeg(double deg) {
         this.deg = deg;
+    }
+
+    public int getGust() {
+        return gust;
+    }
+
+    public void setGust(int gust) {
+        this.gust = gust;
     }
 }

@@ -1,8 +1,12 @@
 package com.mentoring.api.openweathermap;
 
+import com.github.fge.jsonschema.SchemaVersion;
+import com.github.fge.jsonschema.cfg.ValidationConfiguration;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.mentoring.api.openweathermap.dto.*;
 import com.mentoring.api.utills.PropertiesReader;
 import io.restassured.RestAssured;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ResponseBody;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -13,12 +17,23 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 
 public class OpenWeatherService {
 
     private static final Logger log = Logger.getLogger(OpenWeatherService.class);
 
     public PropertiesReader propertiesReader = new PropertiesReader();
+
+    JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory.newBuilder()
+            .setValidationConfiguration(
+                    ValidationConfiguration.newBuilder()
+                            .setDefaultVersion(SchemaVersion.DRAFTV4).freeze())
+            .freeze();
+
+    //JsonSchemaValidator jsonSchemaValidator;
+
 
     public ByCityDto getCurrentWeatherByCity(String cityName) {
         log.info("start test \"Get current weather by city name.\"");
@@ -159,4 +174,77 @@ public class OpenWeatherService {
         }
         return itemsList;
     }
+
+
+    public void validateJsonSchemaByCityName(String cityName){
+        log.info("validation JSON Schema by City Name");
+        RestAssured
+                .given()
+                .log().uri()
+                .queryParam("q", cityName)
+                .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
+                .get(propertiesReader.getValue("openweather.search.path"))
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schema.json")
+                        .using(jsonSchemaFactory))
+                .log().ifError().extract()
+        ;
+    }
+
+    public void validateJsonSchemaByCityId(String cityId){
+        log.info("validation JSON Schema by City ID");
+
+        RestAssured
+                .given()
+                .log().uri()
+                .queryParam("id", cityId)
+                .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
+                .get(propertiesReader.getValue("openweather.search.path"))
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schema.json")
+                        .using(jsonSchemaFactory))
+                .log().ifError().extract()
+        ;
+    }
+
+    public void validateJsonSchemaByCityCoordinates(String lat, String lon){
+        log.info("validation JSON Schema by City coordinates");
+
+        RestAssured
+                .given()
+                .log().uri()
+                .queryParam("lat", lat)
+                .queryParam("lon", lon)
+                .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
+                .get(propertiesReader.getValue("openweather.search.path"))
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schema.json")
+                        .using(jsonSchemaFactory))
+                .log().ifError().extract()
+        ;
+    }
+
+    public void validateJsonSchemaByCityZip(String cityZip){
+        log.info("validation JSON Schema by City ZIP");
+
+        RestAssured
+                .given()
+                .log().uri()
+                .queryParam("zip", cityZip)
+                .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
+                .get(propertiesReader.getValue("openweather.search.path"))
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schema.json")
+                        .using(jsonSchemaFactory))
+                .log().ifError().extract()
+        ;
+    }
+
+
+
+
 }

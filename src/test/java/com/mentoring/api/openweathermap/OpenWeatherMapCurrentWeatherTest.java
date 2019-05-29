@@ -1,5 +1,8 @@
 package com.mentoring.api.openweathermap;
 
+import com.github.fge.jsonschema.SchemaVersion;
+import com.github.fge.jsonschema.cfg.ValidationConfiguration;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.mentoring.api.BaseTest;
 import com.mentoring.api.openweathermap.dto.ByCityDto;
 import com.mentoring.api.openweathermap.dto.ByCoordinatesDto;
@@ -12,9 +15,10 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     private OpenWeatherService openWeatherService = new OpenWeatherService();
 
+
     @Test
     public void testGetCurrentWeatherByCityName() {
-        ByCityDto response = openWeatherService.getCurrentWeatherByCity(propertiesReader.getValue("kiev.name"));
+        ByCityDto response = openWeatherService.getCurrentWeatherByCity(propertiesReader.getValue("city.name"));
 
         Assert.assertEquals("Names of cities mismatch",
                 propertiesReader.getValue("expected.name"),
@@ -23,7 +27,7 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     @Test
     public void testGetCurrentWeatherByCytyId() {
-        ByIdDto response = openWeatherService.getCurrentWeatherById(propertiesReader.getValue("kiev.id"));
+        ByIdDto response = openWeatherService.getCurrentWeatherById(propertiesReader.getValue("city.id"));
 
         Assert.assertEquals("Names of cities mismatch",
                 propertiesReader.getValue("expected.name"),
@@ -34,8 +38,8 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     public void testGetCurrentWeatherByCityCoordinates() {
         ByCoordinatesDto response = openWeatherService.
                 getCurrentWeatherByCoordinates(
-                        propertiesReader.getValue("kiev.latitude"),
-                        propertiesReader.getValue("kiev.longitude"));
+                        propertiesReader.getValue("city.latitude"),
+                        propertiesReader.getValue("city.longitude"));
 
         Assert.assertEquals("Names of cities mismatch",
                 propertiesReader.getValue("expected.name.by.coordinates"),
@@ -44,7 +48,7 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     @Test
     public void testGetCurrentWeatherByCityZipCode() {
-        String requestQuee = propertiesReader.getValue("kiev.zip") + "," + propertiesReader.getValue("country.code");
+        String requestQuee = propertiesReader.getValue("city.zip") + "," + propertiesReader.getValue("country.code");
         ByZipCodeDto response = openWeatherService.getCurrentWeatherByZipCode(requestQuee);
 
         Assert.assertEquals("Names of cities mismatch",
@@ -55,14 +59,14 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     @Test
     public void testResponseBodyByCityName() {
         openWeatherService.assertContains(
-                openWeatherService.getBodyByCityName(propertiesReader.getValue("kiev.name")),
+                openWeatherService.getBodyByCityName(propertiesReader.getValue("city.name")),
                 openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.name.txt"));
     }
 
     @Test
     public void testResponseBodyByCityId() {
         openWeatherService.assertContains(
-                openWeatherService.getBodyByCityId(propertiesReader.getValue("kiev.id")),
+                openWeatherService.getBodyByCityId(propertiesReader.getValue("city.id")),
                 openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.id.txt"));
     }
 
@@ -70,18 +74,39 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     public void testResponseBodyByCityCoordinates() {
         openWeatherService.assertContains(
                 openWeatherService.getBodyByCityCoordinates(
-                        propertiesReader.getValue("kiev.latitude"),
-                        propertiesReader.getValue("kiev.longitude")),
+                        propertiesReader.getValue("city.latitude"),
+                        propertiesReader.getValue("city.longitude")),
                 openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.coordinates.txt"));
     }
 
     @Test
     public void testResponseBodyByCityZipCode() {
         openWeatherService.assertContains(
-                openWeatherService.getBodyByCityZipCode(propertiesReader.getValue("kiev.zip")),
+                openWeatherService.getBodyByCityZipCode(propertiesReader.getValue("city.zip")),
                 openWeatherService.getListItemsToValidate("src/test/resources/items.to.validate.by.zip.txt"));
     }
 
 
+    @Test
+    public void testJsonSchemaValidationByCityName() {
+        openWeatherService.validateJsonSchemaByCityName(propertiesReader.getValue("city.name"));
+    }
+
+    @Test
+    public void testJsonSchemaValidationByCityId() {
+        openWeatherService.validateJsonSchemaByCityId(propertiesReader.getValue("city.id"));
+    }
+
+    @Test
+    public void testJsonSchemaValidationByCityCoordinates() {
+        openWeatherService.validateJsonSchemaByCityCoordinates(
+                propertiesReader.getValue("city.latitude"),
+                propertiesReader.getValue("city.longitude"));
+    }
+
+    @Test
+    public void testJsonSchemaValidationByCityZip() {
+        openWeatherService.validateJsonSchemaByCityZip(propertiesReader.getValue("city.zip"));
+    }
 
 }
