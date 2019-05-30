@@ -132,8 +132,7 @@
       "type": "object",
       "title": "wind",
       "required": [
-        "speed",
-        "deg"
+        "speed"
       ],
       "properties": {
         "speed": {

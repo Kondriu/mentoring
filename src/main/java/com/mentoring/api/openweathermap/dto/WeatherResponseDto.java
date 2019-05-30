@@ -4,7 +4,7 @@ import com.mentoring.api.openweathermap.dto.details_dto.*;
 
 import java.util.List;
 
-public class ByIdDto {
+public class WeatherResponseDto {
 
     private Coord coord;
     private List<Weather> weather;
@@ -20,14 +20,6 @@ public class ByIdDto {
     private int cod;
     private int timezone;
     private Rain rain;
-
-    public Rain getRain() {
-        return rain;
-    }
-
-    public void setRain(Rain rain) {
-        this.rain = rain;
-    }
 
     public Coord getCoord() {
         return coord;
@@ -131,5 +123,13 @@ public class ByIdDto {
 
     public void setTimezone(int timezone) {
         this.timezone = timezone;
+    }
+
+    public Rain getRain() {
+        return rain;
+    }
+
+    public void setRain(Rain rain) {
+        this.rain = rain;
     }
 }
