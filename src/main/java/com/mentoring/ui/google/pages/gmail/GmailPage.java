@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.apache.log4j.Logger;
 
 import java.util.Calendar;
 import java.util.List;
@@ -36,6 +37,8 @@ public class GmailPage extends BasePage {
     @FindBy(css = "a[href$='/#inbox']")
     private WebElement inboxButton;
 
+    private static final Logger log = Logger.getLogger(GmailPage.class);
+
     public GmailPage() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -46,22 +49,26 @@ public class GmailPage extends BasePage {
     }
 
     public void clickCreateNewEmail() {
+        log.info("click on \"Create New Email\" button");
         executeJavaScript("return((window.jQuery != null) && (jQuery.active === 0))");
         waitFor(elementToBeClickable(newEmailButton));
         newEmailButton.click();
     }
 
     public void typeReceiversEmail(String emailReceiver) {
+        log.info("set receiver email: " + emailReceiver);
         waitFor(visibilityOf(emailToField));
         emailToField.sendKeys(emailReceiver);
     }
 
     public void typeSubject(String subj) {
+        log.info("set subject of email");
         waitFor(visibilityOf(emailSubjField));
         emailSubjField.sendKeys(subj);
     }
 
     public void sendEmail() {
+        log.info("click \"Send email\" button");
         executeJavaScript("return((window.jQuery != null) && (jQuery.active === 0))");
         waitFor(visibilityOf(sendEmailButton));
         waitFor(elementToBeClickable(sendEmailButton));
@@ -88,6 +95,7 @@ public class GmailPage extends BasePage {
     }
 
     public String getTopSubjectInEmailsList() {
+        log.info("get subject of last email");
         if (!listOfUnReadEmailsSubjects().isEmpty()) {
             return listOfUnReadEmailsSubjects().get(0);
         } else {

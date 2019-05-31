@@ -181,7 +181,7 @@ public class OpenWeatherService {
     }
 
 
-    public void validateJsonSchemaByCityName(String cityName) {
+    public void assertJsonSchemaByCityName(String cityName) {
         log.info("validation JSON Schema by City Name");
         RestAssured
                 .given()
@@ -196,7 +196,7 @@ public class OpenWeatherService {
                 .log().ifError().extract();
     }
 
-    public void validateJsonSchemaByCityId(String cityId) {
+    public void assertJsonSchemaByCityId(String cityId) {
         log.info("validation JSON Schema by City ID");
 
         RestAssured
@@ -212,7 +212,7 @@ public class OpenWeatherService {
                 .log().ifError().extract();
     }
 
-    public void validateJsonSchemaByCityCoordinates(String lat, String lon) {
+    public void assertJsonSchemaByCityCoordinates(String lat, String lon) {
         log.info("validation JSON Schema by City coordinates");
 
         RestAssured
@@ -229,7 +229,7 @@ public class OpenWeatherService {
                 .log().ifError().extract();
     }
 
-    public void validateJsonSchemaByCityZip(String cityZip) {
+    public void assertJsonSchemaByCityZip(String cityZip) {
         log.info("validation JSON Schema by City ZIP");
 
         RestAssured

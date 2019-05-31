@@ -17,8 +17,8 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     private OpenWeatherService openWeatherService = new OpenWeatherService();
 
     @Test
-    @FileParameters("src/test/resources/cityProvider.csv")
-    public void testGetCurrentWeatherByCityName(String id, String cityName, String lon, String lat, String zipCode, String isoCode, String expectedByCoordinates, String expectedByZip) {
+    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = NameCityMapper.class)
+    public void testGetCurrentWeatherByCityName(String cityName) {
         ByCityDto response = openWeatherService.getCurrentWeatherByCity(cityName);
 
         Assert.assertEquals("Names of cities mismatch",
@@ -27,12 +27,12 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     }
 
     @Test
-    @FileParameters("src/test/resources/cityProvider.csv")
-    public void testGetCurrentWeatherByCytyId(String id, String cityName, String lon, String lat, String zipCode, String isoCode, String expectedByCoordinates, String expectedByZip) {
+    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = IdCityMapper.class)
+    public void testGetCurrentWeatherByCityId(String id, String string) {
         ByIdDto response = openWeatherService.getCurrentWeatherById(id);
 
         Assert.assertEquals("Names of cities mismatch",
-                cityName,
+                string.substring(0,string.indexOf("|")),
                 response.getName());
     }
 
@@ -89,24 +89,24 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     @Test
     public void testJsonSchemaValidationByCityName() {
-        openWeatherService.validateJsonSchemaByCityName(propertiesReader.getValue("city.name"));
+        openWeatherService.assertJsonSchemaByCityName(propertiesReader.getValue("city.name"));
     }
 
     @Test
     public void testJsonSchemaValidationByCityId() {
-        openWeatherService.validateJsonSchemaByCityId(propertiesReader.getValue("city.id"));
+        openWeatherService.assertJsonSchemaByCityId(propertiesReader.getValue("city.id"));
     }
 
     @Test
     public void testJsonSchemaValidationByCityCoordinates() {
-        openWeatherService.validateJsonSchemaByCityCoordinates(
+        openWeatherService.assertJsonSchemaByCityCoordinates(
                 propertiesReader.getValue("city.latitude"),
                 propertiesReader.getValue("city.longitude"));
     }
 
     @Test
     public void testJsonSchemaValidationByCityZip() {
-        openWeatherService.validateJsonSchemaByCityZip(propertiesReader.getValue("city.zip"));
+        openWeatherService.assertJsonSchemaByCityZip(propertiesReader.getValue("city.zip"));
     }
 
 }
