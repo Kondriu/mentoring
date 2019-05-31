@@ -1,6 +1,10 @@
 package com.mentoring.api.openweathermap;
 
 import com.mentoring.api.BaseTest;
+import com.mentoring.api.openweathermap.PropertyMappers.CoordinatesCityMapper;
+import com.mentoring.api.openweathermap.PropertyMappers.IdCityMapper;
+import com.mentoring.api.openweathermap.PropertyMappers.NameCityMapper;
+import com.mentoring.api.openweathermap.PropertyMappers.ZipCityMapper;
 import com.mentoring.api.openweathermap.dto.ByCityDto;
 import com.mentoring.api.openweathermap.dto.ByCoordinatesDto;
 import com.mentoring.api.openweathermap.dto.ByIdDto;
@@ -28,17 +32,17 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     @Test
     @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = IdCityMapper.class)
-    public void testGetCurrentWeatherByCityId(String id, String string) {
+    public void testGetCurrentWeatherByCityId(String id, String cityName) {
         ByIdDto response = openWeatherService.getCurrentWeatherById(id);
 
         Assert.assertEquals("Names of cities mismatch",
-                string.substring(0,string.indexOf("|")),
+                cityName,
                 response.getName());
     }
 
     @Test
-    @FileParameters("src/test/resources/cityProvider.csv")
-    public void testGetCurrentWeatherByCityCoordinates(String id, String cityName, String lon, String lat, String zipCode, String isoCode, String expectedByCoordinates, String expectedByZip) {
+    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = CoordinatesCityMapper.class)
+    public void testGetCurrentWeatherByCityCoordinates(String lon, String lat, String expectedByCoordinates) {
         ByCoordinatesDto response = openWeatherService.
                 getCurrentWeatherByCoordinates(lat, lon);
         Assert.assertEquals("Names of cities mismatch",
@@ -47,8 +51,8 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     }
 
     @Test
-    @FileParameters("src/test/resources/cityProvider.csv")
-    public void testGetCurrentWeatherByCityZipCode(String id, String cityName, String lon, String lat, String zipCode, String isoCode, String expectedByCoordinates, String expectedByZip) {
+    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = ZipCityMapper.class)
+    public void testGetCurrentWeatherByCityZipCode(String zipCode, String isoCode, String expectedByZip) {
         String requestQuee = zipCode + "," + isoCode;
         ByZipCodeDto response = openWeatherService.getCurrentWeatherByZipCode(requestQuee);
 
