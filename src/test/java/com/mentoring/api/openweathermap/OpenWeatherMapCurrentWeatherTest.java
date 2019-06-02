@@ -17,8 +17,8 @@ import org.junit.runner.RunWith;
 public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     private OpenWeatherService openWeatherService = new OpenWeatherService();
-    public static final String ERROR_MSG = "Names of cities mismatch";
-    public static final String CITY_PROVIDER_PATH = "src/test/resources/cityProvider.csv";
+    private final String ERROR_MSG = "Names of cities mismatch";
+    private final String CITY_PROVIDER_PATH = "src/test/resources/cityProvider.csv";
 
     @Test
     @FileParameters(value = CITY_PROVIDER_PATH, mapper = WeatherParamsMapper.class)
