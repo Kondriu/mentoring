@@ -6,14 +6,14 @@ public class WeatherProvider {
 
     private String id;
     private String cityName;
-    private String lat;
     private String lon;
+    private String lat;
     private String zip;
     private String iso;
     private String expCoord;
     private String extZip;
 
-    public WeatherProvider(String id, String cityName, String lat, String lon, String zip, String iso, String expCoord, String extZip) {
+    public WeatherProvider(String id, String cityName, String lon, String lat, String zip, String iso, String expCoord, String extZip) {
         this.id = id;
         this.cityName = cityName;
         this.lat = lat;

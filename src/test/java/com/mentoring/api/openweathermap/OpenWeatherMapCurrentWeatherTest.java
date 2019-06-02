@@ -44,7 +44,7 @@ public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
     @FileParameters(value = CITY_PROVIDER_PATH, mapper = WeatherParamsMapper.class)
     public void testGetCurrentWeatherByCityCoordinates(WeatherProvider weatherProvider) {
         ByCoordinatesDto byCoordinatesResponse = openWeatherService.
-                getCurrentWeatherByCoordinates(weatherProvider.getLon(), weatherProvider.getLat());
+                getCurrentWeatherByCoordinates(weatherProvider.getLat(), weatherProvider.getLon());
         Assert.assertEquals(ERROR_MSG,
                 weatherProvider.getExpCoord(),
                 byCoordinatesResponse.getName());
