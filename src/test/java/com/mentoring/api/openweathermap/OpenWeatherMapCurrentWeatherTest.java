@@ -17,46 +17,46 @@ import org.junit.runner.RunWith;
 public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     private OpenWeatherService openWeatherService = new OpenWeatherService();
-    private final String ERROR_MSG = "Names of cities mismatch";
-    private final String CITY_PROVIDER_PATH = "src/test/resources/cityProvider.csv";
+    private final String errorMessage = "Names of cities mismatch";
+    private final String cityProviderPath = "src/test/resources/cityProvider.csv";
 
     @Test
-    @FileParameters(value = CITY_PROVIDER_PATH, mapper = WeatherParamsMapper.class)
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
     public void testGetCurrentWeatherByCityName(WeatherProvider weatherProvider) {
         ByCityDto byCityIdResponse = openWeatherService.getCurrentWeatherByCity(weatherProvider.getCityName());
 
-        Assert.assertEquals(ERROR_MSG,
+        Assert.assertEquals(errorMessage,
                 weatherProvider.getCityName(),
                 byCityIdResponse.getName());
     }
 
     @Test
-    @FileParameters(value = CITY_PROVIDER_PATH, mapper = WeatherParamsMapper.class)
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
     public void testGetCurrentWeatherByCityId(WeatherProvider weatherProvider) {
         ByIdDto byIdResponse = openWeatherService.getCurrentWeatherById(weatherProvider.getId());
 
-        Assert.assertEquals(ERROR_MSG,
+        Assert.assertEquals(errorMessage,
                 weatherProvider.getCityName(),
                 byIdResponse.getName());
     }
 
     @Test
-    @FileParameters(value = CITY_PROVIDER_PATH, mapper = WeatherParamsMapper.class)
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
     public void testGetCurrentWeatherByCityCoordinates(WeatherProvider weatherProvider) {
         ByCoordinatesDto byCoordinatesResponse = openWeatherService.
                 getCurrentWeatherByCoordinates(weatherProvider.getLat(), weatherProvider.getLon());
-        Assert.assertEquals(ERROR_MSG,
+        Assert.assertEquals(errorMessage,
                 weatherProvider.getExpCoord(),
                 byCoordinatesResponse.getName());
     }
 
     @Test
-    @FileParameters(value = CITY_PROVIDER_PATH, mapper = WeatherParamsMapper.class)
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
     public void testGetCurrentWeatherByCityZipCode(WeatherProvider weatherProvider) {
         String collectedZipAndIsoValues = weatherProvider.getZip() + "," + weatherProvider.getIso();
         ByZipCodeDto byZipCodeResponse = openWeatherService.getCurrentWeatherByZipCode(collectedZipAndIsoValues);
 
-        Assert.assertEquals(ERROR_MSG,
+        Assert.assertEquals(errorMessage,
                 weatherProvider.getExtZip(),
                 byZipCodeResponse.getName());
     }
