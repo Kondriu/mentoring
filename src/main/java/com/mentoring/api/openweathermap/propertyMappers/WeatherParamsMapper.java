@@ -1,4 +1,4 @@
-package com.mentoring.api.openweathermap.PropertyMappers;
+package com.mentoring.api.openweathermap.propertyMappers;
 
 import junitparams.mappers.CsvWithHeaderMapper;
 
@@ -6,7 +6,7 @@ import java.io.Reader;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NameCityMapper extends CsvWithHeaderMapper {
+public class WeatherParamsMapper extends CsvWithHeaderMapper {
 
     @Override
     public Object[] map(Reader reader) {
@@ -15,13 +15,10 @@ public class NameCityMapper extends CsvWithHeaderMapper {
         for (Object lineObj : map) {
             String line = (String) lineObj;
             String delimiter = "\\|";
-
-            String[] parsed = line.split(delimiter);
-
-            result.add(new Object[]{
-                    parsed[1]
-
-            });
+            String[] parsedParameter = line.split(delimiter);
+            result.add(new Object[] { parsedParameter[0], parsedParameter[1], parsedParameter[2],
+                    parsedParameter[3], parsedParameter[4], parsedParameter[5], parsedParameter[6],
+                    parsedParameter[7]});
         }
         return result.toArray();
     }
