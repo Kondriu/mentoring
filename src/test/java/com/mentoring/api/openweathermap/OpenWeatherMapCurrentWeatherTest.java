@@ -1,10 +1,8 @@
 package com.mentoring.api.openweathermap;
 
 import com.mentoring.api.BaseTest;
-import com.mentoring.api.openweathermap.PropertyMappers.CoordinatesCityMapper;
-import com.mentoring.api.openweathermap.PropertyMappers.IdCityMapper;
-import com.mentoring.api.openweathermap.PropertyMappers.NameCityMapper;
-import com.mentoring.api.openweathermap.PropertyMappers.ZipCityMapper;
+import com.mentoring.api.openweathermap.propertyMappers.WeatherParamsMapper;
+import com.mentoring.api.openweathermap.dataProviders.WeatherProvider;
 import com.mentoring.api.openweathermap.dto.ByCityDto;
 import com.mentoring.api.openweathermap.dto.ByCoordinatesDto;
 import com.mentoring.api.openweathermap.dto.ByIdDto;
@@ -19,46 +17,48 @@ import org.junit.runner.RunWith;
 public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
 
     private OpenWeatherService openWeatherService = new OpenWeatherService();
+    private final String errorMessage = "Names of cities mismatch";
+    private final String cityProviderPath = "src/test/resources/cityProvider.csv";
 
     @Test
-    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = NameCityMapper.class)
-    public void testGetCurrentWeatherByCityName(String cityName) {
-        ByCityDto response = openWeatherService.getCurrentWeatherByCity(cityName);
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
+    public void testGetCurrentWeatherByCityName(WeatherProvider weatherProvider) {
+        ByCityDto byCityIdResponse = openWeatherService.getCurrentWeatherByCity(weatherProvider.getCityName());
 
-        Assert.assertEquals("Names of cities mismatch",
-                cityName,
-                response.getName());
+        Assert.assertEquals(errorMessage,
+                weatherProvider.getCityName(),
+                byCityIdResponse.getName());
     }
 
     @Test
-    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = IdCityMapper.class)
-    public void testGetCurrentWeatherByCityId(String id, String cityName) {
-        ByIdDto response = openWeatherService.getCurrentWeatherById(id);
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
+    public void testGetCurrentWeatherByCityId(WeatherProvider weatherProvider) {
+        ByIdDto byIdResponse = openWeatherService.getCurrentWeatherById(weatherProvider.getId());
 
-        Assert.assertEquals("Names of cities mismatch",
-                cityName,
-                response.getName());
+        Assert.assertEquals(errorMessage,
+                weatherProvider.getCityName(),
+                byIdResponse.getName());
     }
 
     @Test
-    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = CoordinatesCityMapper.class)
-    public void testGetCurrentWeatherByCityCoordinates(String lon, String lat, String expectedByCoordinates) {
-        ByCoordinatesDto response = openWeatherService.
-                getCurrentWeatherByCoordinates(lat, lon);
-        Assert.assertEquals("Names of cities mismatch",
-                expectedByCoordinates,
-                response.getName());
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
+    public void testGetCurrentWeatherByCityCoordinates(WeatherProvider weatherProvider) {
+        ByCoordinatesDto byCoordinatesResponse = openWeatherService.
+                getCurrentWeatherByCoordinates(weatherProvider.getLat(), weatherProvider.getLon());
+        Assert.assertEquals(errorMessage,
+                weatherProvider.getExpCoord(),
+                byCoordinatesResponse.getName());
     }
 
     @Test
-    @FileParameters(value = "src/test/resources/cityProvider.csv", mapper = ZipCityMapper.class)
-    public void testGetCurrentWeatherByCityZipCode(String zipCode, String isoCode, String expectedByZip) {
-        String requestQuee = zipCode + "," + isoCode;
-        ByZipCodeDto response = openWeatherService.getCurrentWeatherByZipCode(requestQuee);
+    @FileParameters(value = cityProviderPath, mapper = WeatherParamsMapper.class)
+    public void testGetCurrentWeatherByCityZipCode(WeatherProvider weatherProvider) {
+        String collectedZipAndIsoValues = weatherProvider.getZip() + "," + weatherProvider.getIso();
+        ByZipCodeDto byZipCodeResponse = openWeatherService.getCurrentWeatherByZipCode(collectedZipAndIsoValues);
 
-        Assert.assertEquals("Names of cities mismatch",
-                expectedByZip,
-                response.getName());
+        Assert.assertEquals(errorMessage,
+                weatherProvider.getExtZip(),
+                byZipCodeResponse.getName());
     }
 
     @Test
