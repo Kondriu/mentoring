@@ -24,6 +24,11 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class OpenWeatherService {
 
+    public OpenWeatherService() {
+        RestAssured.baseURI = propertiesReader.getValue("openweather.uri");
+
+    }
+
     private static final Logger log = Logger.getLogger(OpenWeatherService.class);
 
     public PropertiesReader propertiesReader = new PropertiesReader();
@@ -42,7 +47,6 @@ public class OpenWeatherService {
 
         return RestAssured
                 .given()
-                .log().ifValidationFails()
                 .log().uri()
                 .queryParam("q", cityName)
                 .queryParam("appid", propertiesReader.getValue("openweather.api.key"))
