@@ -3,7 +3,7 @@ package com.mentoring.api.restapiexample.dto;
 public class RestApiExamplePostDto {
 
     private String name;
-    private int id;
+    private Integer id;
     private String salary;
     private String age;
 
@@ -16,11 +16,11 @@ public class RestApiExamplePostDto {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
