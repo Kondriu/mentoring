@@ -36,7 +36,7 @@ public class RestApiExampleService {
     }
 
     public RestApiExampleGetDto getUserInfo(Integer id) {
-        log.info("get account details by GET_ACCOUNT_DETAILS request");
+        log.info("get account details by GET by ID request");
 
         String getUser = GET_ACCOUNT_DETAILS + id;
         return RestAssured
@@ -47,7 +47,7 @@ public class RestApiExampleService {
     }
 
     public RestApiExamplePostDto createNewAccount(String name, String salary, String age) {
-        log.info("create new account by CREATE_ACCOUNT_URL request");
+        log.info("create new account by POST request");
 
         return RestAssured
                 .given()
@@ -59,7 +59,7 @@ public class RestApiExampleService {
     }
 
     public RestApiExamplePutDto updateAccount(Integer id, String name, String salary, String age) {
-        log.info("create account by UPDATE_ACCOUNT_URL request");
+        log.info("create account by PUT request");
 
         String putUrl = UPDATE_ACCOUNT_URL + id;
         return RestAssured
@@ -73,7 +73,7 @@ public class RestApiExampleService {
     }
 
     public RestApiExampleDeleteDto deleteAccount(Integer id) {
-        log.info("create account by DELITE request");
+        log.info("delete account by DELETE request (delete by ID).");
 
         String deleteUrl = DELETE_ACCOUNT_URL + id;
         return RestAssured
