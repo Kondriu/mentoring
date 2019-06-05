@@ -1,12 +1,12 @@
 package com.mentoring.api.openweathermap;
 
-import com.mentoring.api.BaseTest;
 import com.mentoring.api.openweathermap.propertyMappers.WeatherParamsMapper;
 import com.mentoring.api.openweathermap.dataProviders.WeatherProvider;
 import com.mentoring.api.openweathermap.dto.ByCityDto;
 import com.mentoring.api.openweathermap.dto.ByCoordinatesDto;
 import com.mentoring.api.openweathermap.dto.ByIdDto;
 import com.mentoring.api.openweathermap.dto.ByZipCodeDto;
+import com.mentoring.api.utills.PropertiesReader;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import org.junit.Assert;
@@ -14,8 +14,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-public class OpenWeatherMapCurrentWeatherTest extends BaseTest {
+public class OpenWeatherMapCurrentWeatherTest{
 
+    private PropertiesReader propertiesReader = new PropertiesReader("openweatherservice.properties");
     private OpenWeatherService openWeatherService = new OpenWeatherService();
     private final String errorMessage = "Names of cities mismatch";
     private final String cityProviderPath = "src/test/resources/cityProvider.csv";

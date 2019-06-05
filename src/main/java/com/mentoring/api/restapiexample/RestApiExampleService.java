@@ -6,13 +6,11 @@ import com.mentoring.api.restapiexample.dto.RestApiExamplePostDto;
 import com.mentoring.api.restapiexample.dto.RestApiExamplePutDto;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
-import org.junit.Assert;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class RestApiExampleService {
 
@@ -35,37 +33,36 @@ public class RestApiExampleService {
         return String.format("Generic Name %1$TH%1$TM%1$TS", new Date());
     }
 
-    public RestApiExampleGetDto getUserInfo(Integer id) {
-        log.info("get account details by GET by ID request");
-
+    public Response makeGetRequestById(Integer id) {
         String getUser = GET_ACCOUNT_DETAILS + id;
+
         return RestAssured
                 .given()
-                .log().uri()
-                .get(getUser)
+                .get(getUser);
+    }
+
+    public RestApiExampleGetDto getUserInfo(Integer id) {
+        log.info(String.format("get account details by GET request (id: %s)", id));
+        return makeGetRequestById(id)
                 .as(RestApiExampleGetDto.class);
     }
 
     public RestApiExamplePostDto createNewAccount(String name, String salary, String age) {
-        log.info("create new account by POST request");
+        log.info(String.format("create new account by POST request  \nname: %S \nsalary: %S\nage: %s", name, salary, age));
 
         return RestAssured
                 .given()
-                .log().uri()
-                .log().body()
                 .request().header("Content-Type", "application/json")
                 .request().body(createRequestBody(name, salary, age).toJSONString())
                 .request().post(CREATE_ACCOUNT_URL).getBody().as(RestApiExamplePostDto.class);
     }
 
     public RestApiExamplePutDto updateAccount(Integer id, String name, String salary, String age) {
-        log.info("create account by PUT request");
+        log.info(String.format("update account by PUT request \nid: %s, \nname: %S \nsalary: %S\nage: %s", id, name, salary, age));
 
         String putUrl = UPDATE_ACCOUNT_URL + id;
         return RestAssured
                 .given()
-                .log().uri()
-                .log().body()
                 .request().header("Content-Type", "application/json")
                 .request().body(createRequestBody(name, salary, age).toJSONString())
                 .request().put(putUrl)
@@ -73,25 +70,13 @@ public class RestApiExampleService {
     }
 
     public RestApiExampleDeleteDto deleteAccount(Integer id) {
-        log.info("delete account by DELETE request (delete by ID).");
+        log.info(String.format("delete account by DELETE request (id: %s)", id));
 
         String deleteUrl = DELETE_ACCOUNT_URL + id;
         return RestAssured
                 .given()
-                .log().uri()
                 .delete(deleteUrl)
                 .as(RestApiExampleDeleteDto.class);
-    }
-
-    public void assertAbsentAccount(Integer id) {
-        List<RestApiExampleGetDto> responseList = new ArrayList<>();
-        try {
-            responseList.add(getUserInfo(id));
-        } catch (Exception e) {
-            e.getMessage();
-        } finally {
-            Assert.assertTrue("Account was not deleted", responseList.isEmpty());
-        }
     }
 
     @SuppressWarnings("unchecked")

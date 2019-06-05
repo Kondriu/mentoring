@@ -21,8 +21,9 @@ import java.util.stream.Collectors;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-
 public class OpenWeatherService {
+
+    public PropertiesReader propertiesReader = new PropertiesReader("openweatherservice.properties");
 
     public OpenWeatherService() {
         RestAssured.baseURI = propertiesReader.getValue("openweather.uri");
@@ -30,8 +31,6 @@ public class OpenWeatherService {
     }
 
     private static final Logger log = Logger.getLogger(OpenWeatherService.class);
-
-    public PropertiesReader propertiesReader = new PropertiesReader();
 
     JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory
             .newBuilder()

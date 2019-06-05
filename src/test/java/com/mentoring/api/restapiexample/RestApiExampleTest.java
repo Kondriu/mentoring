@@ -8,10 +8,10 @@ import com.mentoring.api.utills.PropertiesReader;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RestApiExampleTest {
+public class RestApiExampleTest{
 
     private RestApiExampleService restapiexampleService = new RestApiExampleService();
-    private PropertiesReader propertiesReader = new PropertiesReader();
+    private PropertiesReader propertiesReader = new PropertiesReader("restapiexample.properties");
 
     private String name;
     private String salary = propertiesReader.getValue("user.salary");
@@ -48,8 +48,15 @@ public class RestApiExampleTest {
         RestApiExamplePostDto response = restapiexampleService.createNewAccount(name, salary, age);
         RestApiExampleDeleteDto deleting = restapiexampleService.deleteAccount(response.getId());
 
-        Assert.assertEquals("Received wrong success-message", "successfully! deleted Records", deleting.getSuccess().getText());
-        restapiexampleService.assertAbsentAccount(response.getId());
+        Assert.assertEquals(
+                "Received wrong success-message",
+                "successfully! deleted Records",
+                deleting.getSuccess().getText());
+
+        Assert.assertEquals(
+                "Account was not deleted",
+                "false",
+                restapiexampleService.makeGetRequestById(response.getId()).getBody().asString());
     }
 
 }

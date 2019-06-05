@@ -40,7 +40,7 @@ public class GoogleAccountsPage extends BasePage {
     }
 
     public void typePassword(String password) {
-        log.info("Set password: " + password);
+        log.info("Set password:");
         waitFor(visibilityOf(setPasswordField));
         setPasswordField.clear();
         setPasswordField.sendKeys(password);
