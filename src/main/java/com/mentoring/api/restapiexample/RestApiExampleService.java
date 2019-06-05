@@ -18,11 +18,11 @@ public class RestApiExampleService {
 
     private static final Logger log = Logger.getLogger(RestApiExampleService.class);
 
-    private final String URI = "http://dummy.restapiexample.com/api/v1/";
-    private final String CREATE_ACCOUNT_URL = "/create";
-    private final String UPDATE_ACCOUNT_URL = "/update/";
-    private final String DELETE_ACCOUNT_URL = "/delete/";
-    private final String GET_ACCOUNT_DETAILS = "/employee/";
+    private static final String URI = "http://dummy.restapiexample.com/api/v1/";
+    private static final String CREATE_ACCOUNT_URL = "/create";
+    private static final String UPDATE_ACCOUNT_URL = "/update/";
+    private static final String DELETE_ACCOUNT_URL = "/delete/";
+    private static final String GET_ACCOUNT_DETAILS = "/employee/";
 
 
     public RestApiExampleService() {
