@@ -1,4 +1,4 @@
-package com.mentoring.ui.google.pages.gmail.objects;
+package com.mentoring.ui.google.pages.google.objects;
 
 public class SearchResultsItemText {
     private String url;

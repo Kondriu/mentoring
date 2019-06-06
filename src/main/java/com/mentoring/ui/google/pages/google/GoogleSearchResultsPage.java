@@ -1,7 +1,7 @@
-package com.mentoring.ui.google.pages.gmail;
+package com.mentoring.ui.google.pages.google;
 
 import com.mentoring.ui.google.pages.BasePage;
-import com.mentoring.ui.google.pages.gmail.objects.SearchResultsItemText;
+import com.mentoring.ui.google.pages.google.objects.SearchResultsItemText;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

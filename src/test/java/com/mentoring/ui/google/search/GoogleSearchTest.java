@@ -1,8 +1,8 @@
 package com.mentoring.ui.google.search;
 
 import com.mentoring.ui.BaseTest;
-import com.mentoring.ui.google.pages.gmail.GoogleHomePage;
-import com.mentoring.ui.google.pages.gmail.GoogleSearchResultsPage;
+import com.mentoring.ui.google.pages.google.GoogleHomePage;
+import com.mentoring.ui.google.pages.google.GoogleSearchResultsPage;
 import org.junit.Assert;
 import org.junit.Test;
 
