@@ -39,15 +39,12 @@ public class GoogleSearchResultsPage extends BasePage {
     }
 
     public void clickOnLink(String head) {
-        String string = getSearchResultList()
-                .stream()
-                .filter(
-                        x -> x.getDescription()
-                                .contentEquals(head))
-                .map(SearchResultsItemText::getUrl)
-                .collect(Collectors.joining());
-        getDriver().get(string);
 
+        getDriver().get(getSearchResultList()
+                .stream()
+                .filter(x -> x.getDescription().contentEquals(head))
+                .map(SearchResultsItemText::getUrl)
+                .collect(Collectors.joining()));
     }
 
 }
