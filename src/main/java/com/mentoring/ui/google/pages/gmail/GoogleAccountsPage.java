@@ -19,7 +19,7 @@ public class GoogleAccountsPage extends BasePage {
     @FindBy(css = "input[type='password']")
     private WebElement setPasswordField;
 
-    @FindBy(css = "a[class=gb_x]")
+    @FindBy(css = "svg[class^='gb_x']")
     private WebElement googleMenuButton;
 
     @FindBy(css = "a[href='https://mail.google.com/mail/?tab=km']")
