@@ -57,7 +57,7 @@
         "properties": {
           "id": {
             "$id": "#/properties/weather/items/properties/id",
-            "type": "integer",
+            "type": "number",
             "title": "id"
           },
           "main": {
@@ -102,12 +102,12 @@
         },
         "pressure": {
           "$id": "#/properties/main/properties/pressure",
-          "type": "integer",
+          "type": "number",
           "title": "The Pressure Schema"
         },
         "humidity": {
           "$id": "#/properties/main/properties/humidity",
-          "type": "integer",
+          "type": "number",
           "title": "humidity"
         },
         "temp_min": {
@@ -124,7 +124,7 @@
     },
     "visibility": {
       "$id": "#/properties/visibility",
-      "type": "integer",
+      "type": "number",
       "title": "visibility"
     },
     "wind": {
@@ -142,7 +142,7 @@
         },
         "deg": {
           "$id": "#/properties/wind/properties/deg",
-          "type": "integer",
+          "type": "number",
           "title": "deg"
         }
       }
@@ -157,14 +157,14 @@
       "properties": {
         "all": {
           "$id": "#/properties/clouds/properties/all",
-          "type": "integer",
+          "type": "number",
           "title": "all"
         }
       }
     },
     "dt": {
       "$id": "#/properties/dt",
-      "type": "integer",
+      "type": "number",
       "title": "dt"
     },
 
@@ -183,13 +183,13 @@
       "properties": {
         "type": {
           "$id": "#/properties/sys/properties/type",
-          "type": "integer",
+          "type": "number",
           "title": "type"
         },
 
         "id": {
           "$id": "#/properties/sys/properties/id",
-          "type": "integer",
+          "type": "number",
           "title": "id"
         },
 
@@ -207,13 +207,13 @@
 
         "sunrise": {
           "$id": "#/properties/sys/properties/sunrise",
-          "type": "integer",
+          "type": "number",
           "title": "sunrise"
         },
 
         "sunset": {
           "$id": "#/properties/sys/properties/sunset",
-          "type": "integer",
+          "type": "number",
           "title": "sunset"
         }
 
@@ -222,7 +222,7 @@
 
     "id": {
       "$id": "#/properties/id",
-      "type": "integer",
+      "type": "number",
       "title": "id"
     },
 
@@ -234,7 +234,7 @@
 
     "cod": {
       "$id": "#/properties/cod",
-      "type": "integer",
+      "type": "number",
       "title": "name"
     }
 
