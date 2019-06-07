@@ -1,7 +1,9 @@
 package com.mentoring.ui.google.pages.google;
 
 import com.mentoring.ui.google.pages.BasePage;
+import com.mentoring.ui.google.pages.gmail.GoogleAccountsPage;
 import com.mentoring.ui.google.pages.google.objects.SearchResultsItemText;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 
 public class GoogleSearchResultsPage extends BasePage {
 
+    private static final Logger log = Logger.getLogger(GoogleSearchResultsPage.class);
+
     @FindBy(xpath = "//div[@class='g']")
     private List<WebElement> searchResult;
 
@@ -22,6 +26,7 @@ public class GoogleSearchResultsPage extends BasePage {
     }
 
     public List<SearchResultsItemText> getSearchResultList() {
+        log.info("Getting and storing search output");
 
         List<SearchResultsItemText> itemTexts = new ArrayList<>();
 
@@ -39,7 +44,7 @@ public class GoogleSearchResultsPage extends BasePage {
     }
 
     public void clickOnLink(String head) {
-
+        log.info("clicking on link with header: " + head);
         getDriver().get(getSearchResultList()
                 .stream()
                 .filter(x -> x.getDescription().contentEquals(head))
