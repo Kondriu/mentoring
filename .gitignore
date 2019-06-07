@@ -3,3 +3,4 @@
 .gitignore
 target
 log_file.log
+.allure
