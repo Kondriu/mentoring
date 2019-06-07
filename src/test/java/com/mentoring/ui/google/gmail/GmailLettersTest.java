@@ -19,7 +19,7 @@ public class GmailLettersTest extends BaseTest {
         accountsPage.typeEmail(propertiesReader().getValue("user.login"));
         accountsPage.clickNextButton();
         accountsPage.typePassword(propertiesReader().getValue("user.password"));
-        accountsPage.clickNextButton();
+        //accountsPage.clickNextButton();
         accountsPage.expandGoogleMenu();
 
         GmailPage gmailPage = accountsPage.clickOnGmailLink();
