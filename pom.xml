@@ -63,6 +63,7 @@
                             <name>listener</name>
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
+
                     </properties>
                     <systemProperties>
                         <property>
@@ -81,6 +82,7 @@
             </plugin>
 
 
+
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -88,14 +90,31 @@
                 <configuration>
                     <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
                     <reportVersion>2.5.0</reportVersion>
-                    <reportDirectory>${basedir}/target/allure-report</reportDirectory>
-                    <resultsDirectory>${basedir}/target/allure-results</resultsDirectory>
+                    <reportDirectory>${basedir}/allure-report</reportDirectory>
+                    <resultsDirectory>${basedir}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
 
         </plugins>
     </build>
 
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>
+                    2.9
+                </version>
+                <configuration>
+                    <properties>
+                        <allure.results.directory>{basedir}/allure-results</allure.results.directory>
+                    </properties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
     <dependencies>
 
         <dependency>
