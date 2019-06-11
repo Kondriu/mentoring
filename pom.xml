@@ -15,6 +15,7 @@
 
         <aspectj.version>1.8.10</aspectj.version>
         <allure.results.directory>${project.basedir}/target/site</allure.results.directory>
+        <propertiesFilePath>path/to/your/allure.properties</propertiesFilePath>
 
 
 
@@ -102,7 +103,7 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>${allure-junit4.version}</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!--
