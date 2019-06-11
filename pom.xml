@@ -48,16 +48,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.9</version>
-                <configuration>
-
-                    <reportDirectory>${project.build.directory}/graph-test-report</reportDirectory>
-                    <reportVersion>2.3.1</reportVersion>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -68,21 +58,18 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-
-                    <systemProperties>
-                    <property>
-                        <name>allure.results.directory</name>
-                        <value>${allure.results.directory}</value>
-                    </property>
-                    </systemProperties>
-
                     <properties>
                         <property>
                             <name>listener</name>
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
                     </properties>
-
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -94,6 +81,18 @@
             </plugin>
 
 
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
+                    <reportVersion>2.5.0</reportVersion>
+                    <reportDirectory>${basedir}/target/allure-report</reportDirectory>
+                    <resultsDirectory>${basedir}/target/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -103,8 +102,19 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>${allure-junit4.version}</version>
+            <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure-junit4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-migration</artifactId>
+            <version>${allure-junit4.version}</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>io.qameta.allure</groupId>
