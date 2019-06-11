@@ -23,7 +23,7 @@ public class GoogleHomePage extends BasePage {
     }
 
     public void getGoogleHomePage() {
-        visitPage("https://google.com/ncr");
+        visitPage("https://google.com/");
     }
 
     public void typeSearchRequest(String requestString) {

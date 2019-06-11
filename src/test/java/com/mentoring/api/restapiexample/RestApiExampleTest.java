@@ -55,7 +55,7 @@ public class RestApiExampleTest{
 
         Assert.assertEquals(
                 "Account was not deleted",
-                "false",
+                "ZZZZfalse",
                 restapiexampleService.makeGetRequestById(response.getId()).getBody().asString());
     }
 
