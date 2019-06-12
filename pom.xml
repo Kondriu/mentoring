@@ -13,11 +13,8 @@
 
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 
-        <aspectj.version>1.8.10</aspectj.version>
-<!--        <allure.results.directory>${basedir}/allure-results</allure.results.directory>-->
-        <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
-
-
+        <aspectj.version>1.9.4</aspectj.version>
+<!--        <allure.results.directory>${project.basedir}/target/</allure.results.directory>-->
 
         <selenium-java.version>3.141.59</selenium-java.version>
         <junit.version>4.12</junit.version>
@@ -63,15 +60,7 @@
                             <name>listener</name>
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
-
                     </properties>
-
-<!--                    <systemProperties>-->
-<!--                        <property>-->
-<!--                            <name>allure.results.directory</name>-->
-<!--                            <value>${basedir}/allure-results</value>-->
-<!--                        </property>-->
-<!--                    </systemProperties>-->
 
                 </configuration>
                 <dependencies>
@@ -88,10 +77,10 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.9</version>
                 <configuration>
-                    <propertiesFilePath>${propertiesFilePath}</propertiesFilePath>
+                    <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
                     <reportVersion>2.5.0</reportVersion>
-                    <reportDirectory>${basedir}/allure-report</reportDirectory>
-                    <resultsDirectory>${basedir}/allure-results</resultsDirectory>
+                    <reportDirectory>${basedir}/target/allure-report</reportDirectory>
+                    <resultsDirectory>${basedir}/target/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
 
@@ -106,17 +95,6 @@
             <artifactId>allure-junit4</artifactId>
             <version>${allure-junit4.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <version>${allure-junit4.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-java-migration</artifactId>
-            <version>${allure-junit4.version}</version>
         </dependency>
 
         <dependency>

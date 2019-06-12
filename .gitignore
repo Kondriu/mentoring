@@ -5,3 +5,4 @@ target
 log_file.log
 .allure
 allure-results
+allure-report
