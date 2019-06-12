@@ -14,7 +14,7 @@
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 
         <aspectj.version>1.8.10</aspectj.version>
-        <allure.results.directory>${project.basedir}/target/site</allure.results.directory>
+<!--        <allure.results.directory>${basedir}/allure-results</allure.results.directory>-->
         <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
 
 
@@ -65,12 +65,14 @@
                         </property>
 
                     </properties>
-                    <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${basedir}/allure-results</value>
-                        </property>
-                    </systemProperties>
+
+<!--                    <systemProperties>-->
+<!--                        <property>-->
+<!--                            <name>allure.results.directory</name>-->
+<!--                            <value>${basedir}/allure-results</value>-->
+<!--                        </property>-->
+<!--                    </systemProperties>-->
+
                 </configuration>
                 <dependencies>
                     <dependency>
