@@ -10,5 +10,5 @@ import org.junit.runners.Suite;
         RestApiExampleTest.class
 )
 
-public class SmokeTest {
+public class TestSuiteSmokeTest {
 }

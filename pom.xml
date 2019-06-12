@@ -68,7 +68,7 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>${project.build.directory}/allure-results</value>
+                            <value>${basedir}/allure-results</value>
                         </property>
                     </systemProperties>
                 </configuration>
@@ -109,7 +109,7 @@
                 </version>
                 <configuration>
                     <properties>
-                        <allure.results.directory>{basedir}/allure-results</allure.results.directory>
+                        <allure.results.directory>${basedir}/allure-results</allure.results.directory>
                     </properties>
                 </configuration>
             </plugin>
