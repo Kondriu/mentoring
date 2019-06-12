@@ -15,7 +15,7 @@
 
         <aspectj.version>1.8.10</aspectj.version>
         <allure.results.directory>${project.basedir}/target/site</allure.results.directory>
-        <propertiesFilePath>path/to/your/allure.properties</propertiesFilePath>
+        <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
 
 
 
@@ -81,14 +81,12 @@
                 </dependencies>
             </plugin>
 
-
-
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.9</version>
                 <configuration>
-                    <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
+                    <propertiesFilePath>${propertiesFilePath}</propertiesFilePath>
                     <reportVersion>2.5.0</reportVersion>
                     <reportDirectory>${basedir}/allure-report</reportDirectory>
                     <resultsDirectory>${basedir}/allure-results</resultsDirectory>
@@ -98,23 +96,7 @@
         </plugins>
     </build>
 
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>
-                    2.9
-                </version>
-                <configuration>
-                    <properties>
-                        <allure.results.directory>${basedir}/allure-results</allure.results.directory>
-                    </properties>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
+
     <dependencies>
 
         <dependency>
@@ -134,14 +116,6 @@
             <artifactId>allure-java-migration</artifactId>
             <version>${allure-junit4.version}</version>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit-platform</artifactId>
-            <version>2.12.1</version>
-            <scope>test</scope>
-        </dependency>
-        -->
 
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -220,7 +194,6 @@
             <artifactId>json-simple</artifactId>
             <version>${json-simple.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
