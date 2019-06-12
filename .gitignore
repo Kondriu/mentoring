@@ -4,5 +4,5 @@
 target
 log_file.log
 .allure
-allure-results
-allure-report
+allure-results/*.*
+allure-report/*.*
