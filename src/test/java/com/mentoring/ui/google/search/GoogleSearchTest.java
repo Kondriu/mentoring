@@ -19,6 +19,6 @@ public class GoogleSearchTest extends BaseTest {
         GoogleSearchResultsPage searchResultsPage = googleHomePage.clickOnSearchButton();
 
         searchResultsPage.clickOnLink(siteTitle);
-        Assert.assertEquals("Wrong page opened", siteTitle, getDriver().getTitle());
+        Assert.assertEquals("Wrong page opened!", siteTitle, getDriver().getTitle());
     }
 }

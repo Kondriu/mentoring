@@ -26,7 +26,7 @@ public class GoogleSearchResultsPage extends BasePage {
     }
 
     public List<SearchResultsItemText> getSearchResultList() {
-        log.info("Getting and storing search outpu t");
+        log.info("Getting and storing search output");
 
         List<SearchResultsItemText> itemTexts = new ArrayList<>();
 
