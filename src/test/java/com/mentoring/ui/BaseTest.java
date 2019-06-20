@@ -1,12 +1,14 @@
 package com.mentoring.ui;
 
+import com.mentoring.ui.utills.PropertiesReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
-import com.mentoring.ui.utills.PropertiesReader;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 
 import java.io.IOException;
 
@@ -20,44 +22,39 @@ public class BaseTest {
     }
 
     @Before
-    public void startBrowser() {
+    public void startBrowser(){
 
         String browserName = System.getProperty("browserName");
-        //if (browserName == null) browserName = "chrome";
+        if (browserName == null || browserName.isEmpty()) browserName = "chrome";
 
-
-        System.out.println("++++++++");
-        System.out.println("Value of browserName: " + browserName);
-        System.out.println("run suite: " + System.getProperty("test"));
-        System.out.println("++++++++");
-
-//        WebDriverManager.chromedriver().setup();
-//        System.getProperty("browser");
-
-        // вычитывает пармерт из командной строки
-        //типа все что идет после mvn
-        // clean test -Dbrowser=${browserName}
-        // browserName - как назвал в дженкинсе
-        // свич кейс в засисмости от вычитанной System.getProperty
-        //
 
         switch (browserName) {
             case ("firefox"): {
+
                 WebDriverManager.firefoxdriver().setup();
                 setDriver(new FirefoxDriver());
                 getDriver().manage().window().maximize();
-            }break;
+                break;
+            }
             case ("opera"): {
+
                 WebDriverManager.operadriver().setup();
-                setDriver(new OperaDriver());
-                getDriver().manage().window().maximize();
-            }break;
-            case ("chrome"):
-            default:{
+
+                OperaOptions operaOptions = new OperaOptions();
+                operaOptions.addArguments("start-maximized");
+                operaOptions.setBinary("/usr/bin/opera");
+
+                setDriver(new OperaDriver(operaOptions));
+                break;
+            }
+            case ("chrome"): {
                 WebDriverManager.chromedriver().setup();
-                setDriver(new ChromeDriver());
-                getDriver().manage().window().maximize();
-            }break;
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("start-maximized");
+                options.addArguments("disable-infobars");
+                setDriver(new ChromeDriver(options));
+                break;
+            }
         }
 
     }
