@@ -22,7 +22,7 @@ public class BaseTest {
     }
 
     @Before
-    public void startBrowser(){
+    public void startBrowser() {
 
         String browserName = System.getProperty("browserName");
         if (browserName == null || browserName.isEmpty()) browserName = "chrome";
@@ -41,8 +41,17 @@ public class BaseTest {
                 WebDriverManager.operadriver().setup();
 
                 OperaOptions operaOptions = new OperaOptions();
+                switch (System.getProperty("os.name")) {
+                    case ("Windows 10"): {
+                        operaOptions.setBinary("C:\\Users\\Dmytro_Kondriukov\\AppData\\Local\\Programs\\Opera\\60.0.3255.170\\opera.exe");
+                        break;
+                    }
+                    case ("Linux"): {
+                        operaOptions.setBinary("/usr/bin/opera");
+                        break;
+                    }
+                }
                 operaOptions.addArguments("start-maximized");
-                operaOptions.setBinary("/usr/bin/opera");
 
                 setDriver(new OperaDriver(operaOptions));
 
@@ -53,8 +62,8 @@ public class BaseTest {
                 options.addArguments("start-maximized");
                 options.addArguments("disable-infobars");
                 setDriver(new ChromeDriver(options));
-
-            }break;
+                break;
+            }
         }
 
     }
