@@ -15,7 +15,7 @@ public class GoogleSearchTest extends BaseTest {
         String siteTitle = "Selenium - Web Browser Automation";
         GoogleHomePage googleHomePage = new GoogleHomePage();
         googleHomePage.getGoogleHomePage();
-        googleHomePage.typeSearchRequest("Selenium");
+        googleHomePage.typeSearchRequest("selenium");
         GoogleSearchResultsPage searchResultsPage = googleHomePage.clickOnSearchButton();
 
         searchResultsPage.clickOnLink(siteTitle);

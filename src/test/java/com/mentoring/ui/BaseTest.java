@@ -33,9 +33,9 @@ public class BaseTest {
 
                 WebDriverManager.firefoxdriver().setup();
                 setDriver(new FirefoxDriver());
-                getDriver().manage().window().maximize();
-                break;
-            }
+                //getDriver().manage().window().maximize();
+
+            }break;
             case ("opera"): {
 
                 WebDriverManager.operadriver().setup();
@@ -45,16 +45,16 @@ public class BaseTest {
                 operaOptions.setBinary("/usr/bin/opera");
 
                 setDriver(new OperaDriver(operaOptions));
-                break;
-            }
+
+            }break;
             case ("chrome"): {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("start-maximized");
                 options.addArguments("disable-infobars");
                 setDriver(new ChromeDriver(options));
-                break;
-            }
+
+            }break;
         }
 
     }
