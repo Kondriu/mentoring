@@ -6,3 +6,5 @@ log_file.log
 #!allure-results/
 #!allure-report/
 mentoring.iml
+target
+allure-results

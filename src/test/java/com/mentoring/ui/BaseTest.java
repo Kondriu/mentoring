@@ -35,7 +35,8 @@ public class BaseTest {
                 setDriver(new FirefoxDriver());
                 //getDriver().manage().window().maximize();
 
-            }break;
+            }
+            break;
             case ("opera"): {
 
                 WebDriverManager.operadriver().setup();
@@ -55,7 +56,8 @@ public class BaseTest {
 
                 setDriver(new OperaDriver(operaOptions));
 
-            }break;
+            }
+            break;
             case ("chrome"): {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
